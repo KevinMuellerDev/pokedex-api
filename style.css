@@ -1,3 +1,14 @@
 body{
     margin:0
 }
+
+h2{
+    margin: 0;
+}
+
+#pokedex{
+    margin: 0;
+    height: 50vh;
+    background-color: rgb(202, 63, 63);
+    color: white;  
+}

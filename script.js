@@ -6,4 +6,5 @@ async function loadPokemon() {
     let responseAsJson = await response.json();
 
     console.log(responseAsJson);
+    renderPokemonInfo(responseAsJson['name'],responseAsJson['sprites']['other']['official-artwork']['front_default']);
 }
