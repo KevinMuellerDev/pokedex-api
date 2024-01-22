@@ -1,5 +1,10 @@
+:root{
+    --fire: #b95c50;
+}
+
 body{
-    margin:0
+    margin:0;
+    font-family: 'Noto Sans', sans-serif;
 }
 
 h2{
@@ -9,6 +14,6 @@ h2{
 #pokedex{
     margin: 0;
     height: 50vh;
-    background-color: rgb(202, 63, 63);
+    background-color: var(--fire);
     color: white;  
 }
