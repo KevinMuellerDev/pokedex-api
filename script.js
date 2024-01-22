@@ -8,3 +8,10 @@ async function loadPokemon() {
     console.log(responseAsJson);
     renderPokemonInfo(responseAsJson['name'],responseAsJson['sprites']['other']['official-artwork']['front_default']);
 }
+
+function firstLetterToCapital(name) {
+    let str = name;
+    let modStr = str[0].toUpperCase() + str.slice(1);
+    
+    return modStr;
+}
