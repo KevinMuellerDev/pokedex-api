@@ -1,7 +1,6 @@
 function renderPokemonTiles(data) {
 for (let i = 0; i < data.length; i++) {
     const tile = data[i];
-    console.log(tile);
 
     document.getElementById('tiles-container').innerHTML+=templateTile(i);
     document.getElementById(`tile${i}`).style.background = `var(--${tile.types[0]})`;
