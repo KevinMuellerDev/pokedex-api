@@ -26,6 +26,11 @@
     font-family: 'Noto Sans', sans-serif;
     color: var(--white-font);
 }
+body{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
 
 
 header {
@@ -46,20 +51,40 @@ h1{
 main{
     display: flex;
     justify-content: space-around;
+    flex-wrap: wrap;
+    max-width: 1400px;
 }
 
 .poke-tile {
     position: relative;
     margin-top: 32px;
-    height: 200px;
-    width: 300px;
-    background: var(--fire);
+    height: 140px;
+    width: 220px;
+    padding: 20px 0px 20px 20px;
+
     border-radius: 16px;
-    padding: 8px;
+
 }
 .poke-sprite{
     position: absolute;
     right: 0px;
-    bottom: 0px;
-    height: 160px;
+    bottom: 10px;
+    height: 120px;
+}
+
+.poke-info{
+    width: 80px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.poke-info div{
+    padding: 8px 24px;
+    border-radius: 16px;
+    background-color: rgba(255, 255, 255, 0.1);
+}
+.tile-type{
+    display: flex;
+    justify-content: center;
 }
