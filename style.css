@@ -1,19 +1,36 @@
-:root{
-    --fire: #b95c50;
+:root {
+    --fire: linear-gradient(155deg, #fe8c90, #c43237);
+    --bug: linear-gradient(155deg, #5cdab6, #209272);
+    --electric: linear-gradient(155deg, #f3c246, #b48307);
+    --water: linear-gradient(155deg, #a2cfff, #5298e2);
+    --ground: linear-gradient(155deg, #cbc5bf, #817970);
+    --rock: linear-gradient(155deg, #afb7bc, #6d6f70);
+    --steel: linear-gradient(155deg, #c7d0d7, #8c959d);
+    --fairy: linear-gradient(155deg, #edbde4, #dd87cb);
+    --poison: linear-gradient(155deg, #b18bc0, #843b9e);
+    --grass: linear-gradient(155deg, #aac3ab, #449547);
+    --dragon: linear-gradient(155deg, #dcc0a2, #ffa44f);
+    --psychic: linear-gradient(155deg, #f497e0, #d455b8);
+    --flying: linear-gradient(155deg, #abdfff, #47b3f7);
+    --fighting: linear-gradient(155deg, #e8a68a, #e34e0f);
+    --ghost: linear-gradient(155deg, #777a98, #213143);
+    --ice: linear-gradient(155deg, #c4d6eb, #9db8d7);
+    --dark: linear-gradient(155deg, #7b7ba3, #2b1e50);
+    --normal: linear-gradient(155deg, #c1ad94, #736655);
 }
 
-body{
-    margin:0;
+body {
+    margin: 0;
     font-family: 'Noto Sans', sans-serif;
 }
 
-h2{
+h2 {
     margin: 0;
 }
 
-#pokedex{
+#pokedex {
     margin: 0;
     height: 50vh;
-    background-color: var(--fire);
-    color: white;  
+    background: var(--fire);
+    color: white;
 }
