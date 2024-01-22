@@ -64,7 +64,14 @@ main{
     padding: 20px 0px 20px 20px;
     border-radius: 16px;
     margin-bottom: 8px;
+    transition: all 125ms ease-in-out ;
 }
+
+.poke-tile:hover{
+    filter: drop-shadow(15px 15px 13px rgba(0,0,0,0.5));
+    outline: 0.05px solid rgba(255,255,255,0.1);
+}
+
 .poke-sprite{
     position: absolute;
     right: 0px;
