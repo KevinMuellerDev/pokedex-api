@@ -1,7 +1,8 @@
 function templateTile(index) {
     return `<div id="tile${index}" class="poke-tile" style ="">
                 <div id="tile-info${index}" class="poke-info">
-                    <h3 id="pokemon-name${index}"></h3>
+                    <h4 id="pokemon-name${index}"></h4>
+                    <p id="pokemon-id${index}"></p>
                 </div>
                 <img class="poke-sprite" id="sprite${index}" src="" alt="">
             </div>`

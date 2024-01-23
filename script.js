@@ -3,8 +3,10 @@ let dataOffset = 0;
 let currentPokemon;
 
 async function init() {
+    toggleLoadingSpinner(true);
     await loadPokemon();
     renderPokemonTiles(pokemonData,dataOffset);
+    toggleLoadingSpinner(false);
 }
 
 async function loadPokemon() {
@@ -22,8 +24,10 @@ async function loadPokemon() {
 }
 
 async function showMore() {
+    toggleLoadingSpinner(true);
     await loadPokemon();
     renderPokemonTiles(pokemonData,dataOffset);
+    toggleLoadingSpinner(false);
 }
 
 function firstLetterToCapital(name) {
@@ -41,4 +45,12 @@ function getType(data) {
     }
 
     return types
+}
+
+function toggleLoadingSpinner(state){
+    if (state == true) {
+        document.getElementById('spinner').classList.remove('d-none')
+    }else{
+        document.getElementById('spinner').classList.add('d-none')
+    }
 }

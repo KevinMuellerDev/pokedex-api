@@ -1,6 +1,6 @@
 :root {
     --white-font: white;
-    --header:linear-gradient(155deg, #6960b1, #11009E);
+    --header: linear-gradient(155deg, #6960b1, #11009E);
     --fire: linear-gradient(155deg, #fe8c90, #c43237);
     --bug: linear-gradient(155deg, #5cdab6, #209272);
     --electric: linear-gradient(155deg, #f3c246, #b48307);
@@ -21,13 +21,14 @@
     --normal: linear-gradient(155deg, #c1ad94, #736655);
 }
 
-*{
+* {
     padding: 0;
     margin: 0;
     font-family: 'Noto Sans', sans-serif;
     color: var(--white-font);
 }
-body{
+
+body {
     display: flex;
     align-items: center;
     flex-direction: column;
@@ -45,16 +46,20 @@ header {
     filter: drop-shadow(-1px -4px 9px black);
 }
 
-h1{
+h1 {
     font-family: 'Poke Hollow', sans-serif;
     font-size: 80px;
 }
 
-main{
+main {
     display: flex;
     justify-content: space-around;
     flex-wrap: wrap;
     max-width: 1250px;
+}
+
+.d-none{
+    display: none!important;
 }
 
 .poke-tile {
@@ -64,34 +69,72 @@ main{
     padding: 20px 0px 20px 20px;
     border-radius: 16px;
     margin-bottom: 8px;
-    transition: all 125ms ease-in-out ;
+    transition: all 125ms ease-in-out;
+    cursor: pointer;
 }
 
-.poke-tile:hover{
-    filter: drop-shadow(15px 15px 13px rgba(0,0,0,0.5));
-    outline: 0.05px solid rgba(255,255,255,0.1);
+.poke-tile:hover {
+    filter: drop-shadow(15px 15px 13px rgba(0, 0, 0, 0.5));
+    outline: 0.05px solid rgba(255, 255, 255, 0.1);
 }
 
-.poke-sprite{
+.poke-sprite {
     position: absolute;
     right: 0px;
     bottom: 10px;
     height: 120px;
 }
 
-.poke-info{
-    width: 80px;
+.poke-info {
+    width: auto;
     display: flex;
     flex-direction: column;
     gap: 16px;
 }
 
-.poke-info div{
+.poke-info div {
+    width: 40px;
     padding: 8px 24px;
     border-radius: 16px;
     background-color: rgba(255, 255, 255, 0.1);
 }
-.tile-type{
+
+.tile-type {
     display: flex;
     justify-content: center;
+}
+
+.loader {
+    display: flex;
+    align-items: center;
+    position: fixed;
+    border: 16px solid #f3f3f3;
+    /* Light grey */
+    border-top: 16px solid #344753;
+    /* Blue */
+    border-radius: 50%;
+    width: 120px;
+    height: 120px;
+    animation: spin 2s linear infinite;
+}
+
+.loader-bg {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(255, 255, 255, 0.3);
+    border-radius: 8px;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
 }
