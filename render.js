@@ -10,23 +10,31 @@ function renderPokemonTiles(data, dataOffs) {
         document.getElementById(`tile${i}`).style.background = `var(--${tile.types[0]})`;
         document.getElementById(`pokemon-name${i}`).innerHTML = firstLetterToCapital(tile.name);
         document.getElementById(`pokemon-id${i}`).innerHTML = `#${tile.id}`;
-        renderPokemonTileType(tile, i);
+        renderPokemonTileType(tile, i, 'tile');
         document.getElementById(`sprite${i}`).src = tile.sprite
         document.getElementById(`sprite${i}`).alt = tile.name
     }
     dataOffset += 25;
 }
 
-function renderPokemonTileType(tile, index) {
+function renderPokemonTileType(tile, index, mode) {
     for (let j = 0; j < tile.types.length; j++) {
         const element = tile.types[j];
-        document.getElementById(`tile-info${index}`).innerHTML += templateType(element);
+        if (mode === 'tile') {
+            document.getElementById(`tile-info${index}`).innerHTML += templateType(element);       
+        }else if (mode === 'card') {
+ 
+            document.getElementById(`card-type`).innerHTML += templateType(element);       
+        }
     }
 }
 
 
 function renderCard(index){
+    document.getElementById('card-type').innerHTML = '';
     document.getElementById('sprite-card').src = pokemonData[index].sprite;
     document.getElementById('card-display').style.background = `var(--${pokemonData[index].types[0]})`;
-    
+    document.getElementById('pokemon-name-card').innerHTML = firstLetterToCapital(pokemonData[index].name);
+    document.getElementById(`pokemon-id-card`).innerHTML = `#${pokemonData[index].id}`;
+    renderPokemonTileType(pokemonData[index],'','card')
 }

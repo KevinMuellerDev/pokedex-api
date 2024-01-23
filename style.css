@@ -99,14 +99,14 @@ main {
     gap: 16px;
 }
 
-.poke-info div {
+.poke-info div, #card-type div {
     width: 40px;
     padding: 8px 24px;
     border-radius: 16px;
     background-color: rgba(255, 255, 255, 0.1);
 }
 
-.poke-info p {
+.poke-info p, .card-info p {
     position: absolute;
     top: 20px;
     right: 20px;
@@ -194,6 +194,17 @@ main {
     border-radius: 16px 16px 0px 0px;
 }
 
+.card-info{
+    padding: 16px 24px;
+}
+
+#card-type{
+    display: flex;
+    gap: 12px;
+    margin-block-start: 16px;
+}
+
+
 .card-pokeball{
     position: absolute;
     bottom: 32px;
@@ -206,8 +217,8 @@ main {
     position: absolute;
     display: flex;
     justify-content: center;
-    top: 50%;
-    height: 160px;
+    top: 40%;
+    height: 200px;
     z-index: 2000;
 }
 
