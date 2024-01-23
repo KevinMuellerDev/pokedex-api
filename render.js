@@ -5,6 +5,7 @@ function renderPokemonTiles(data, dataOffs) {
         document.getElementById('tiles-container').innerHTML += templateTile(i);
         document.getElementById(`tile${i}`).style.background = `var(--${tile.types[0]})`;
         document.getElementById(`pokemon-name${i}`).innerHTML = firstLetterToCapital(tile.name);
+        document.getElementById(`pokemon-id${i}`).innerHTML = `#${tile.id}`;
         renderPokemonTileType(tile, i);
         document.getElementById(`sprite${i}`).src = tile.sprite
         document.getElementById(`sprite${i}`).alt = tile.name
@@ -15,7 +16,6 @@ function renderPokemonTiles(data, dataOffs) {
 function renderPokemonTileType(tile, index) {
     for (let j = 0; j < tile.types.length; j++) {
         const element = tile.types[j];
-        console.log(element)
         document.getElementById(`tile-info${index}`).innerHTML += templateType(element);
     }
 }

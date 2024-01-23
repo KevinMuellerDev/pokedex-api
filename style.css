@@ -99,6 +99,12 @@ main {
     background-color: rgba(255, 255, 255, 0.1);
 }
 
+.poke-info p{
+    position:absolute;
+    top: 20px;
+    right: 20px;
+}
+
 .tile-type {
     display: flex;
     justify-content: center;

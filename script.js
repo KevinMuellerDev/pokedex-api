@@ -17,17 +17,12 @@ async function loadPokemon() {
         let name = responseAsJson['name']
         let sprite = responseAsJson['sprites']['other']['official-artwork']['front_default']
         let types = getType(responseAsJson['types']);
-        let jsonPokeData = { 'name': name, 'sprite': sprite, 'types': types };
+        let pokeId = responseAsJson['id'];
+        //console.log(pokeId);
+        let jsonPokeData = { 'name': name, 'sprite': sprite, 'types': types, 'id': pokeId};
+        //console.log(responseAsJson);
         pokemonData.push(jsonPokeData);
     }
-    //console.log(responseAsJson);
-}
-
-async function showMore() {
-    toggleLoadingSpinner(true);
-    await loadPokemon();
-    renderPokemonTiles(pokemonData,dataOffset);
-    toggleLoadingSpinner(false);
 }
 
 function firstLetterToCapital(name) {
