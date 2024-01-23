@@ -4,12 +4,12 @@ let currentPokemon;
 
 async function init() {
     toggleLoadingSpinner(true);
-    await loadPokemon();
+    await loadPokemonTiles();
     renderPokemonTiles(pokemonData,dataOffset);
     toggleLoadingSpinner(false);
 }
 
-async function loadPokemon() {
+async function loadPokemonTiles() {
     for (let i = 1 + dataOffset; i <= 25 + dataOffset; i++) {
         let url = `https://pokeapi.co/api/v2/pokemon/${i}`;
         let response = await fetch(url);
@@ -18,9 +18,7 @@ async function loadPokemon() {
         let sprite = responseAsJson['sprites']['other']['official-artwork']['front_default']
         let types = getType(responseAsJson['types']);
         let pokeId = responseAsJson['id'];
-        //console.log(pokeId);
         let jsonPokeData = { 'name': name, 'sprite': sprite, 'types': types, 'id': pokeId};
-        //console.log(responseAsJson);
         pokemonData.push(jsonPokeData);
     }
 }
@@ -48,4 +46,14 @@ function toggleLoadingSpinner(state){
     }else{
         document.getElementById('spinner').classList.add('d-none')
     }
+}
+
+function showCard(index){
+    document.getElementById('card-container').classList.remove('d-none');
+
+}
+
+function closeCard(){
+    document.getElementById('card-container').classList.add('d-none');
+
 }

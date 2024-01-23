@@ -1,5 +1,5 @@
 function templateTile(index) {
-    return `<div id="tile${index}" class="poke-tile" style ="">
+    return `<div id="tile${index}" class="poke-tile" style ="" onclick="showCard(${index})">
                 <div id="tile-info${index}" class="poke-info">
                     <h4 id="pokemon-name${index}"></h4>
                     <p id="pokemon-id${index}"></p>
@@ -12,3 +12,4 @@ function templateTile(index) {
 function templateType(type) {
     return `<div class="tile-type">${firstLetterToCapital(type)}</div>`
 }
+

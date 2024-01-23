@@ -183,10 +183,22 @@ main {
 }
 
 .card-top {
+    position: relative;
     background: var(--dark);
     z-index: 1000;
     width: 300px;
+    height: 320px;
+    border-radius: 16px 16px 0px 0px;
 }
+
+.card-pokeball{
+    position: absolute;
+    bottom: 32px;
+    right: 16px;
+    height:128px;
+    transform: rotate(-25deg);
+}
+
 
 .card-bottom {
     background: var(--white-font);
