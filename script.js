@@ -49,6 +49,8 @@ function toggleLoadingSpinner(state){
 }
 
 function showCard(index){
+    renderCard(index);
+
     document.getElementById('card-container').classList.remove('d-none');
 
 }

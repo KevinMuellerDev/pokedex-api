@@ -25,6 +25,8 @@ function renderPokemonTileType(tile, index) {
 }
 
 
-function renderCard(data){
-    // implement render and data logic
+function renderCard(index){
+    document.getElementById('sprite-card').src = pokemonData[index].sprite;
+    document.getElementById('card-display').style.background = `var(--${pokemonData[index].types[0]})`;
+    
 }

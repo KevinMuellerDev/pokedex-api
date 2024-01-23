@@ -167,17 +167,19 @@ main {
 }
 
 #card {
+    position: fixed;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
-
+    z-index: 2000;
 }
 
 #card-container{
     position: absolute;
     display: flex;
     justify-content: center;
+    align-items: center;
     height: 100vh;
     width: 100vw;
 }
@@ -186,7 +188,8 @@ main {
     position: relative;
     background: var(--dark);
     z-index: 1000;
-    width: 300px;
+    width: 100%;
+    max-width: 300px;
     height: 320px;
     border-radius: 16px 16px 0px 0px;
 }
@@ -199,6 +202,14 @@ main {
     transform: rotate(-25deg);
 }
 
+.card-sprite{
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    top: 50%;
+    height: 160px;
+    z-index: 2000;
+}
 
 .card-bottom {
     background: var(--white-font);
