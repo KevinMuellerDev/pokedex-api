@@ -1,3 +1,7 @@
+/*  @data: receiving the pokemonData JSON.
+    @dataOffs: receiving the Offset to render the template from the last added tile.
+    This function gets the ids of the rendered elements to fill them with their 
+    needed data and increments the offset at the end.   */
 function renderPokemonTiles(data, dataOffs) {
     for (let i = 0 + dataOffs; i < data.length; i++) {
         const tile = data[i];
@@ -20,3 +24,7 @@ function renderPokemonTileType(tile, index) {
     }
 }
 
+
+function renderCard(data){
+    // implement render and data logic
+}

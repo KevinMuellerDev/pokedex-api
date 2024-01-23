@@ -1,5 +1,7 @@
 :root {
     --white-font: white;
+    --spinner: #344753;
+    --spinner-bg: #f3f3f3;
     --header: linear-gradient(155deg, #6960b1, #11009E);
     --fire: linear-gradient(155deg, #fe8c90, #c43237);
     --bug: linear-gradient(155deg, #5cdab6, #209272);
@@ -29,6 +31,7 @@
 }
 
 body {
+    position: relative;
     display: flex;
     align-items: center;
     flex-direction: column;
@@ -55,17 +58,19 @@ main {
     display: flex;
     justify-content: space-around;
     flex-wrap: wrap;
-    max-width: 1250px;
+    max-width: 1350px;
 }
 
-.d-none{
-    display: none!important;
+
+
+.d-none {
+    display: none !important;
 }
 
 .poke-tile {
     position: relative;
     height: 140px;
-    width: 220px;
+    width: 240px;
     padding: 20px 0px 20px 20px;
     border-radius: 16px;
     margin-bottom: 8px;
@@ -87,8 +92,6 @@ main {
     z-index: 1;
 }
 
-
-
 .poke-info {
     width: auto;
     display: flex;
@@ -103,8 +106,8 @@ main {
     background-color: rgba(255, 255, 255, 0.1);
 }
 
-.poke-info p{
-    position:absolute;
+.poke-info p {
+    position: absolute;
     top: 20px;
     right: 20px;
     color: rgba(255, 255, 255, 0.25);
@@ -117,7 +120,7 @@ main {
     justify-content: center;
 }
 
-.tile-pokeball{
+.tile-pokeball {
     position: absolute;
     right: 0;
     bottom: 0;
@@ -130,26 +133,27 @@ main {
     display: flex;
     align-items: center;
     position: fixed;
-    border: 16px solid #f3f3f3;
-    /* Light grey */
-    border-top: 16px solid #344753;
-    /* Blue */
+    border: 16px solid var(--spinner-bg);
+    border-top: 16px solid var(--spinner);
     border-radius: 50%;
     width: 120px;
     height: 120px;
-    animation: spin 2s linear infinite;
+    animation: spin 1s linear infinite;
 }
 
-.loader-bg {
+.blur-bg {
     position: fixed;
-    width: 100%;
-    height: 100%;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
     display: flex;
     align-items: center;
     justify-content: center;
     background-color: rgba(255, 255, 255, 0.3);
     border-radius: 8px;
     z-index: 100;
+    backdrop-filter: blur(4px);
 }
 
 @keyframes spin {
@@ -160,4 +164,35 @@ main {
     100% {
         transform: rotate(360deg);
     }
+}
+
+#card {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+
+}
+
+#card-container{
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    height: 100vh;
+    width: 100vw;
+}
+
+.card-top {
+    background: var(--dark);
+    z-index: 1000;
+    width: 300px;
+}
+
+.card-bottom {
+    background: var(--white-font);
+    z-index: 1000;
+    height: 60px;
+    width: 300px;
+    border-radius: 16px 16px 0px 0px;
+    margin-top: -16px;
 }
