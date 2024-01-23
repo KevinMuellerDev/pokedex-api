@@ -5,6 +5,7 @@ function templateTile(index) {
                     <p id="pokemon-id${index}"></p>
                 </div>
                 <img class="poke-sprite" id="sprite${index}" src="" alt="">
+                <img class="tile-pokeball" src="./img/pokeball-fade.png" alt="">
             </div>`
 }
 
