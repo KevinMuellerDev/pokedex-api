@@ -28,9 +28,9 @@ function templateCard() {
             <img id="sprite-card" class="card-sprite" src="" alt="">
             <div class="card-bottom">
                 <div class="nav-card">
-                    <a href="#">Info</a>
+                    <a onclick="renderStats()">Info</a>
                     <a href="#">Base Stats</a>
-                    <a href="" onclick="">Moves</a>
+                    <a onclick="renderMoves()">Moves</a>
                     <a href="#">Evolution</a>
                 </div>
                 <div id="card-content"></div>
@@ -56,7 +56,7 @@ function templateStats(data) {
                     <td>${data['weight']}kg</td>
                 </tr>
                 <tr>
-                    <td>Abilities:</td>Ï
+                    <td>Abilities:</td>
                     <td>${data['abilities']}</td>
                 </tr>
             </tbody>
@@ -68,7 +68,7 @@ function templateStats(data) {
 }
 
 function templateMoves(data){
-    return html`
-        <div class="move-div"></div>
+    return `
+        <div class="move-div">${firstLetterToCapital(data)}</div>
     `
 }

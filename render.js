@@ -17,6 +17,7 @@ function renderPokemonTiles(data, dataOffs) {
     dataOffset += 25;
 }
 
+
 function renderPokemonTileType(tile, index, mode) {
     for (let j = 0; j < tile.types.length; j++) {
         const element = tile.types[j];
@@ -39,4 +40,20 @@ function renderCard(index){
     document.getElementById(`pokemon-id-card`).innerHTML = `#${pokemonData[index].id}`;
     renderPokemonTileType(pokemonData[index],'','card')
     document.getElementById('card-content').innerHTML = templateStats(pokemonDataCard[0]);
+}
+
+function renderStats(){
+    document.getElementById('card-content').innerHTML = templateStats(pokemonDataCard[0]);
+}
+
+function renderMoves(){
+    let content = document.getElementById('card-content');
+    content.innerHTML = '';
+    content.innerHTML = `<div id="moves-container"></div>`
+
+    for (let i = 0; i < 15; i++) {
+        const move = pokemonDataCard[0]['moves'][i];
+        
+        document.getElementById('moves-container').innerHTML += templateMoves(move);
+    }
 }

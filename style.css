@@ -247,6 +247,7 @@ main {
 
 .nav-card a{
     color: black;
+    cursor: pointer;
 }
 
 td{
@@ -259,4 +260,22 @@ td:first-child{
 }
 table{
     padding: 24px 0px;
+    font-size: 14px;
+}
+
+#moves-container{
+    flex-wrap: wrap;
+    display: flex;
+    justify-content: flex-start;
+    gap: 8px;
+    margin-top: 24px;
+}
+
+.move-div{
+    padding: 4px 8px;
+    background-color: rgba(0,0,0,0.1);
+    font-size: small;
+    border-radius: 16px;
+    color: rgba(0,0,0,0.6);
+    box-shadow: 5px 5px 7px -5px rgba(0, 0, 0, 0.5);
 }
