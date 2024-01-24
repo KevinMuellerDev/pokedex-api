@@ -10,6 +10,7 @@ async function init() {
     toggleLoadingSpinner(false);
 }
 
+
 async function loadPokemonTiles() {
     for (let i = 1 + dataOffset; i <= 25 + dataOffset; i++) {
         let url = `https://pokeapi.co/api/v2/pokemon/${i}`;
@@ -24,6 +25,8 @@ async function loadPokemonTiles() {
         console.log(responseAsJson);
     }
 }
+
+
 async function loadPokemonCard(index) {
     pokemonDataCard = [];
     let urlSpecies = `https://pokeapi.co/api/v2/pokemon-species/${index+1}`;
@@ -44,12 +47,14 @@ async function loadPokemonCard(index) {
     pokemonDataCard.push(jsonPokeDataCard)
 }
 
+
 function firstLetterToCapital(name) {
     let str = name;
     let modStr = str[0].toUpperCase() + str.slice(1);
 
     return modStr;
 }
+
 
 function getMoves(data) {
     let moves = [];
@@ -84,7 +89,6 @@ async function showCard(index) {
     renderCard(index);
     toggleLoadingSpinner(false);
     document.getElementById('card-container').classList.remove('d-none');
-
 }
 
 function closeCard() {

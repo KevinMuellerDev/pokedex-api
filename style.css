@@ -52,6 +52,7 @@ header {
 h1 {
     font-family: 'Poke Hollow', sans-serif;
     font-size: 80px;
+    color: #ffce1fff;
 }
 
 main {
@@ -223,10 +224,11 @@ main {
 }
 
 .card-bottom {
+    padding: 0px 16px;
     background: var(--white-font);
     z-index: 1000;
     height: 340px;
-    width: 300px;
+    width: 268px;
     border-radius: 16px;
     margin-top: -16px;
     border-top: 1px solid rgba(0, 0, 0, 0.2);
@@ -236,9 +238,6 @@ main {
     color: black;
 }
 
-.card-flavortext{
-    padding:0px 16px;
-}
 
 .nav-card{
     margin-block-start: 24px;
@@ -259,5 +258,5 @@ td:first-child{
     padding-right: 24px;
 }
 table{
-    padding: 24px 16px;
+    padding: 24px 0px;
 }
