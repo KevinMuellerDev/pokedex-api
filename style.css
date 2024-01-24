@@ -61,8 +61,6 @@ main {
     max-width: 1350px;
 }
 
-
-
 .d-none {
     display: none !important;
 }
@@ -173,6 +171,8 @@ main {
     justify-content: center;
     flex-direction: column;
     z-index: 2000;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: 16px;
 }
 
 #card-container{
@@ -217,7 +217,7 @@ main {
     position: absolute;
     display: flex;
     justify-content: center;
-    top: 40%;
+    top: 18%;
     height: 200px;
     z-index: 2000;
 }
@@ -225,8 +225,18 @@ main {
 .card-bottom {
     background: var(--white-font);
     z-index: 1000;
-    height: 60px;
+    height: 400px;
     width: 300px;
-    border-radius: 16px 16px 0px 0px;
+    border-radius: 16px;
     margin-top: -16px;
+}
+
+.nav-card{
+    margin-block-start: 24px;
+    display: flex;
+    justify-content: space-around;
+}
+
+.nav-card a{
+    color: black;
 }
