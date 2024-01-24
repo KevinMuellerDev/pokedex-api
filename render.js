@@ -31,10 +31,12 @@ function renderPokemonTileType(tile, index, mode) {
 
 
 function renderCard(index){
+    document.getElementById('card-container').innerHTML = templateCard();
     document.getElementById('card-type').innerHTML = '';
     document.getElementById('sprite-card').src = pokemonData[index].sprite;
     document.getElementById('card-display').style.background = `var(--${pokemonData[index].types[0]})`;
     document.getElementById('pokemon-name-card').innerHTML = firstLetterToCapital(pokemonData[index].name);
     document.getElementById(`pokemon-id-card`).innerHTML = `#${pokemonData[index].id}`;
     renderPokemonTileType(pokemonData[index],'','card')
+    document.getElementById('card-content').innerHTML = templateStats(pokemonDataCard[0]);
 }

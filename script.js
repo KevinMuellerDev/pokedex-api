@@ -1,11 +1,12 @@
-let pokemonData = []
+let pokemonData = [];
+let pokemonDataCard = [];
 let dataOffset = 0;
 let currentPokemon;
 
 async function init() {
     toggleLoadingSpinner(true);
     await loadPokemonTiles();
-    renderPokemonTiles(pokemonData,dataOffset);
+    renderPokemonTiles(pokemonData, dataOffset);
     toggleLoadingSpinner(false);
 }
 
@@ -18,9 +19,29 @@ async function loadPokemonTiles() {
         let sprite = responseAsJson['sprites']['other']['official-artwork']['front_default']
         let types = getType(responseAsJson['types']);
         let pokeId = responseAsJson['id'];
-        let jsonPokeData = { 'name': name, 'sprite': sprite, 'types': types, 'id': pokeId};
+        let jsonPokeData = { 'name': name, 'sprite': sprite, 'types': types, 'id': pokeId };
         pokemonData.push(jsonPokeData);
+        console.log(responseAsJson);
     }
+}
+async function loadPokemonCard(index) {
+    pokemonDataCard = [];
+    let urlSpecies = `https://pokeapi.co/api/v2/pokemon-species/${index+1}`;
+    let responseSpecies = await fetch(urlSpecies);
+    let responseAsJsonSpecies = await responseSpecies.json();
+    let urlCard = `https://pokeapi.co/api/v2/pokemon/${index+1}`;
+    let responseCard = await fetch(urlCard);
+    let responseAsJsonCard = await responseCard.json();
+
+    let species = responseAsJsonSpecies['genera'][7].genus;
+    let flavorText = responseAsJsonSpecies['flavor_text_entries'][11]['flavor_text'];
+    let moves = getMoves(responseAsJsonCard['moves']);
+    let abilities = getAbilities(responseAsJsonCard['abilities']);
+    let height = (responseAsJsonCard['height'] / 10).toFixed(1);
+    let weight = (responseAsJsonCard['weight'] / 10).toFixed(1);
+
+    let jsonPokeDataCard = { 'species': species, 'flavortext': flavorText, 'moves': moves, 'height': height, 'weight':weight, 'abilities':abilities};
+    pokemonDataCard.push(jsonPokeDataCard)
 }
 
 function firstLetterToCapital(name) {
@@ -28,6 +49,15 @@ function firstLetterToCapital(name) {
     let modStr = str[0].toUpperCase() + str.slice(1);
 
     return modStr;
+}
+
+function getMoves(data) {
+    let moves = [];
+    for (let i = 0; i < data.length; i++) {
+        const element = data[i];
+        moves.push(element['move']['name'])
+    }
+    return moves
 }
 
 function getType(data) {
@@ -40,21 +70,32 @@ function getType(data) {
     return types
 }
 
-function toggleLoadingSpinner(state){
+function toggleLoadingSpinner(state) {
     if (state == true) {
         document.getElementById('spinner').classList.remove('d-none')
-    }else{
+    } else {
         document.getElementById('spinner').classList.add('d-none')
     }
 }
 
-function showCard(index){
+async function showCard(index) {
+    toggleLoadingSpinner(true);
+    await loadPokemonCard(index)
     renderCard(index);
+    toggleLoadingSpinner(false);
     document.getElementById('card-container').classList.remove('d-none');
 
 }
 
-function closeCard(){
+function closeCard() {
     document.getElementById('card-container').classList.add('d-none');
+}
 
+function getAbilities(data){
+    let firstAbilities =[];
+    for (let i = 0; i < data.length; i++) {
+        const element = data[i];
+        firstAbilities.push(element['ability']['name']);
+    }
+    return firstAbilities
 }

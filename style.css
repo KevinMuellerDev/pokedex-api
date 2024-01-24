@@ -217,7 +217,7 @@ main {
     position: absolute;
     display: flex;
     justify-content: center;
-    top: 18%;
+    top: 20%;
     height: 200px;
     z-index: 2000;
 }
@@ -225,10 +225,19 @@ main {
 .card-bottom {
     background: var(--white-font);
     z-index: 1000;
-    height: 400px;
+    height: 340px;
     width: 300px;
     border-radius: 16px;
     margin-top: -16px;
+    border-top: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+.card-bottom span{
+    color: black;
+}
+
+.card-flavortext{
+    padding:0px 16px;
 }
 
 .nav-card{
@@ -239,4 +248,16 @@ main {
 
 .nav-card a{
     color: black;
+}
+
+td{
+    color: black;
+}
+
+td:first-child{
+    display: block;
+    padding-right: 24px;
+}
+table{
+    padding: 24px 16px;
 }
