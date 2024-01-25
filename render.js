@@ -32,7 +32,7 @@ function renderPokemonTileType(tile, index, mode) {
 
 
 function renderCard(index) {
-    document.getElementById('card-container').innerHTML = templateCard();
+    document.getElementById('card-container').innerHTML = templateCard(index + 1);
     document.getElementById('card-type').innerHTML = '';
     document.getElementById('sprite-card').src = pokemonData[index].sprite;
     document.getElementById('card-display').style.background = `var(--${pokemonData[index].types[0]})`;
@@ -46,7 +46,8 @@ function renderInfo() {
     document.getElementById('card-content').innerHTML = templateInfo(pokemonDataCard[0]);
 }
 
-function renderStats() { ''
+function renderStats() {
+    ''
     document.getElementById('card-content').innerHTML = '';
     document.getElementById('card-content').innerHTML = templateStats(pokemonDataCard[0]);
 }
@@ -61,4 +62,8 @@ function renderMoves() {
 
         document.getElementById('moves-container').innerHTML += templateMoves(move);
     }
+}
+
+function renderEvo() {
+
 }

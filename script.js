@@ -43,7 +43,7 @@ async function loadPokemonCard(index) {
     let height = (responseAsJsonCard['height'] / 10).toFixed(1);
     let weight = (responseAsJsonCard['weight'] / 10).toFixed(1);
     let stats = getStats((responseAsJsonCard)['stats']);
-    console.log(responseAsJsonSpecies);
+    loadEvo();
 
     let jsonPokeDataCard = {
         'species': species, 'flavortext': flavorText,
@@ -153,28 +153,28 @@ function getStatbarWidth(value, state) {
     }
 }
 
-async function test(index) {
+async function loadEvo(index) {
     let url = `https://pokeapi.co/api/v2/evolution-chain/${index}/`;
     let response = await fetch(url);
     let responseAsJson = await response.json();
-
-    console.log(responseAsJson.chain.species.name);
-    console.log(responseAsJson)
+    pushEvo(responseAsJson.chain.species);
 
     if (responseAsJson.chain.evolves_to.length > 0) {
-        let evoName1 = responseAsJson.chain.evolves_to[0].species.name;
-        let imgId1 = getEvoId(responseAsJson.chain.evolves_to[0].species.url);
-        let spriteEvo1 = (`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${imgId1}.png`)
-        console.log(evoName1)
-        console.log(spriteEvo1)
+        pushEvo(responseAsJson.chain.evolves_to[0].species);
+
         if (responseAsJson.chain.evolves_to[0].evolves_to.length > 0) {
-            let evoName2 = responseAsJson.chain.evolves_to[0].evolves_to[0].species.name;
-            let imgId2 = getEvoId(responseAsJson.chain.evolves_to[0].evolves_to[0].species.url);
-            let spriteEvo2 = (`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${imgId2}.png`)
-            console.log(evoName2)
-            console.log(spriteEvo2)
+            pushEvo(responseAsJson.chain.evolves_to[0].evolves_to[0].species);
         }
     }
+}
+
+function pushEvo(data){
+    let name = data.name;
+    let id = getEvoId(data.url)
+    let sprite = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${id}.png`
+    let evoJson= {'name': name, 'id':id, 'sprite':sprite}
+
+    evoData.push(evoJson);
 }
 
 

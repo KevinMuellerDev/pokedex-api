@@ -13,7 +13,7 @@ function templateType(type) {
     return `<div class="tile-type">${firstLetterToCapital(type)}</div>`
 }
 
-function templateCard() {
+function templateCard(index) {
     return `
         <div class="blur-bg" onclick="closeCard()"></div>
         <div id="card">
@@ -31,7 +31,7 @@ function templateCard() {
                     <a onclick="renderInfo()">Info</a>
                     <a onclick="renderStats()">Stats</a>
                     <a onclick="renderMoves()">Moves</a>
-                    <a href="#">Evolution</a>
+                    <a onclick="renderEvo(${index})">Evolution</a>
                 </div>
                 <div id="card-content"></div>
             </div>
