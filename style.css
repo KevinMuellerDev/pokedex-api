@@ -253,7 +253,7 @@ main {
     cursor: pointer;
 }
 
-td {
+td, td b {
     color: rgba(0, 0, 0, 0.8);
     padding: 4px 0px;
 }

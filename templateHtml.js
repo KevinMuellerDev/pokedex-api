@@ -111,8 +111,8 @@ function templateStatbar(data,index) {
 
 function templateTotalStats(){
     return `
-    <td>Total:</td>
-    <td>${totalStats()}</td>
+    <td><b>Total:</b></td>
+    <td><b>${totalStats()}</b></td>
     <td class="stat-width"> 
         <div id="myProgress">
             <div id="myBar" style="width:${getStatbarWidth(totalStats(), true)}%"></div>
