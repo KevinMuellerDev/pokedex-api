@@ -1,5 +1,6 @@
 let pokemonData = [];
 let pokemonDataCard = [];
+let evoData = [];
 let dataOffset = 0;
 
 async function init() {
@@ -143,27 +144,40 @@ function totalStats() {
 
 
 function getStatbarWidth(value, state) {
-    if (state===true) {
+    if (state === true) {
         let statWidth = Number((100 / 780) * value);
         return statWidth;
-    }else{
+    } else {
         let statWidth = Number((100 / 154) * value);
         return statWidth;
     }
 }
 
-async function test(index){
+async function test(index) {
     let url = `https://pokeapi.co/api/v2/evolution-chain/${index}/`;
     let response = await fetch(url);
     let responseAsJson = await response.json();
-    console.log(responseAsJson.chain.species.name);
 
-    if (responseAsJson.chain.evolves_to.length>0) {
-        console.log(responseAsJson.chain.evolves_to[0].species.name);
-        
-        if (responseAsJson.chain.evolves_to[0].evolves_to.length>0) {
-            console.log(responseAsJson.chain.evolves_to[0].evolves_to[0].species.name);  
+    console.log(responseAsJson.chain.species.name);
+    console.log(responseAsJson)
+
+    if (responseAsJson.chain.evolves_to.length > 0) {
+        let evoName1 = responseAsJson.chain.evolves_to[0].species.name;
+        let imgId1 = getEvoId(responseAsJson.chain.evolves_to[0].species.url);
+        let spriteEvo1 = (`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${imgId1}.png`)
+        console.log(evoName1)
+        console.log(spriteEvo1)
+        if (responseAsJson.chain.evolves_to[0].evolves_to.length > 0) {
+            let evoName2 = responseAsJson.chain.evolves_to[0].evolves_to[0].species.name;
+            let imgId2 = getEvoId(responseAsJson.chain.evolves_to[0].evolves_to[0].species.url);
+            let spriteEvo2 = (`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${imgId2}.png`)
+            console.log(evoName2)
+            console.log(spriteEvo2)
         }
     }
+}
 
+
+function getEvoId(link) {
+    return link.slice(-5).replace(/\D/g, '');
 }
