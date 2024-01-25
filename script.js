@@ -1,7 +1,6 @@
 let pokemonData = [];
 let pokemonDataCard = [];
 let dataOffset = 0;
-let currentPokemon;
 
 async function init() {
     toggleLoadingSpinner(true);
@@ -43,7 +42,7 @@ async function loadPokemonCard(index) {
     let height = (responseAsJsonCard['height'] / 10).toFixed(1);
     let weight = (responseAsJsonCard['weight'] / 10).toFixed(1);
     let stats = getStats((responseAsJsonCard)['stats']);
-    console.log(stats);
+    console.log(responseAsJsonSpecies);
 
     let jsonPokeDataCard = {
         'species': species, 'flavortext': flavorText,
@@ -71,6 +70,7 @@ function getMoves(data) {
     return moves
 }
 
+
 function getType(data) {
     let types = [];
     for (let i = 0; i < data.length; i++) {
@@ -81,6 +81,7 @@ function getType(data) {
     return types
 }
 
+
 function toggleLoadingSpinner(state) {
     if (state == true) {
         document.getElementById('spinner').classList.remove('d-none')
@@ -88,6 +89,7 @@ function toggleLoadingSpinner(state) {
         document.getElementById('spinner').classList.add('d-none')
     }
 }
+
 
 async function showCard(index) {
     toggleLoadingSpinner(true);
@@ -97,9 +99,11 @@ async function showCard(index) {
     document.getElementById('card-container').classList.remove('d-none');
 }
 
+
 function closeCard() {
     document.getElementById('card-container').classList.add('d-none');
 }
+
 
 function getAbilities(data) {
     let firstAbilities = [];
@@ -109,6 +113,7 @@ function getAbilities(data) {
     }
     return firstAbilities
 }
+
 
 function getStats(data) {
     let stats = [];
@@ -123,6 +128,8 @@ function getStats(data) {
     }
     return stats;
 }
+
+
 function totalStats() {
     let statsData = pokemonDataCard[0]['stats'];
     console.log(statsData)
@@ -134,6 +141,7 @@ function totalStats() {
     return statsTotal
 }
 
+
 function getStatbarWidth(value, state) {
     if (state===true) {
         let statWidth = Number((100 / 780) * value);
@@ -142,4 +150,20 @@ function getStatbarWidth(value, state) {
         let statWidth = Number((100 / 154) * value);
         return statWidth;
     }
+}
+
+async function test(index){
+    let url = `https://pokeapi.co/api/v2/evolution-chain/${index}/`;
+    let response = await fetch(url);
+    let responseAsJson = await response.json();
+    console.log(responseAsJson.chain.species.name);
+
+    if (responseAsJson.chain.evolves_to.length>0) {
+        console.log(responseAsJson.chain.evolves_to[0].species.name);
+        
+        if (responseAsJson.chain.evolves_to[0].evolves_to.length>0) {
+            console.log(responseAsJson.chain.evolves_to[0].evolves_to[0].species.name);  
+        }
+    }
+
 }
