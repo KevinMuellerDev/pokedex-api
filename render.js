@@ -22,38 +22,43 @@ function renderPokemonTileType(tile, index, mode) {
     for (let j = 0; j < tile.types.length; j++) {
         const element = tile.types[j];
         if (mode === 'tile') {
-            document.getElementById(`tile-info${index}`).innerHTML += templateType(element);       
-        }else if (mode === 'card') {
- 
-            document.getElementById(`card-type`).innerHTML += templateType(element);       
+            document.getElementById(`tile-info${index}`).innerHTML += templateType(element);
+        } else if (mode === 'card') {
+
+            document.getElementById(`card-type`).innerHTML += templateType(element);
         }
     }
 }
 
 
-function renderCard(index){
+function renderCard(index) {
     document.getElementById('card-container').innerHTML = templateCard();
     document.getElementById('card-type').innerHTML = '';
     document.getElementById('sprite-card').src = pokemonData[index].sprite;
     document.getElementById('card-display').style.background = `var(--${pokemonData[index].types[0]})`;
     document.getElementById('pokemon-name-card').innerHTML = firstLetterToCapital(pokemonData[index].name);
     document.getElementById(`pokemon-id-card`).innerHTML = `#${pokemonData[index].id}`;
-    renderPokemonTileType(pokemonData[index],'','card')
+    renderPokemonTileType(pokemonData[index], '', 'card')
+    document.getElementById('card-content').innerHTML = templateInfo(pokemonDataCard[0]);
+}
+
+function renderInfo() {
+    document.getElementById('card-content').innerHTML = templateInfo(pokemonDataCard[0]);
+}
+
+function renderStats() { ''
+    document.getElementById('card-content').innerHTML = '';
     document.getElementById('card-content').innerHTML = templateStats(pokemonDataCard[0]);
 }
 
-function renderStats(){
-    document.getElementById('card-content').innerHTML = templateStats(pokemonDataCard[0]);
-}
-
-function renderMoves(){
+function renderMoves() {
     let content = document.getElementById('card-content');
     content.innerHTML = '';
     content.innerHTML = `<div id="moves-container"></div>`
 
     for (let i = 0; i < 15; i++) {
         const move = pokemonDataCard[0]['moves'][i];
-        
+
         document.getElementById('moves-container').innerHTML += templateMoves(move);
     }
 }

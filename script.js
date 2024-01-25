@@ -29,10 +29,10 @@ async function loadPokemonTiles() {
 
 async function loadPokemonCard(index) {
     pokemonDataCard = [];
-    let urlSpecies = `https://pokeapi.co/api/v2/pokemon-species/${index+1}`;
+    let urlSpecies = `https://pokeapi.co/api/v2/pokemon-species/${index + 1}`;
     let responseSpecies = await fetch(urlSpecies);
     let responseAsJsonSpecies = await responseSpecies.json();
-    let urlCard = `https://pokeapi.co/api/v2/pokemon/${index+1}`;
+    let urlCard = `https://pokeapi.co/api/v2/pokemon/${index + 1}`;
     let responseCard = await fetch(urlCard);
     let responseAsJsonCard = await responseCard.json();
 
@@ -42,8 +42,14 @@ async function loadPokemonCard(index) {
     let abilities = getAbilities(responseAsJsonCard['abilities']);
     let height = (responseAsJsonCard['height'] / 10).toFixed(1);
     let weight = (responseAsJsonCard['weight'] / 10).toFixed(1);
+    let stats = getStats((responseAsJsonCard)['stats']);
+    console.log(stats);
 
-    let jsonPokeDataCard = { 'species': species, 'flavortext': flavorText, 'moves': moves, 'height': height, 'weight':weight, 'abilities':abilities};
+    let jsonPokeDataCard = {
+        'species': species, 'flavortext': flavorText,
+        'moves': moves, 'height': height, 'weight': weight,
+        'abilities': abilities, 'stats': stats
+    };
     pokemonDataCard.push(jsonPokeDataCard)
 }
 
@@ -95,11 +101,45 @@ function closeCard() {
     document.getElementById('card-container').classList.add('d-none');
 }
 
-function getAbilities(data){
-    let firstAbilities =[];
+function getAbilities(data) {
+    let firstAbilities = [];
     for (let i = 0; i < data.length; i++) {
         const element = data[i];
         firstAbilities.push(element['ability']['name']);
     }
     return firstAbilities
+}
+
+function getStats(data) {
+    let stats = [];
+    for (let i = 0; i < data.length; i++) {
+        const statpoints = data[i];
+        let value = statpoints['base_stat'];
+        let basestat = statpoints['stat']['name'];
+        value = value.toString();
+        basestat = firstLetterToCapital(basestat);
+        let statsJson = { 'value': value, 'basestat': basestat };
+        stats.push(statsJson);
+    }
+    return stats;
+}
+function totalStats() {
+    let statsData = pokemonDataCard[0]['stats'];
+    console.log(statsData)
+    let statsTotal = 0;
+    for (let i = 0; i < statsData.length; i++) {
+        const statsValue = Number(statsData[i]['value']);
+        statsTotal += statsValue;
+    }
+    return statsTotal
+}
+
+function getStatbarWidth(value, state) {
+    if (state===true) {
+        let statWidth = Number((100 / 780) * value);
+        return statWidth;
+    }else{
+        let statWidth = Number((100 / 154) * value);
+        return statWidth;
+    }
 }

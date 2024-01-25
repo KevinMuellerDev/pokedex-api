@@ -28,8 +28,8 @@ function templateCard() {
             <img id="sprite-card" class="card-sprite" src="" alt="">
             <div class="card-bottom">
                 <div class="nav-card">
-                    <a onclick="renderStats()">Info</a>
-                    <a href="#">Base Stats</a>
+                    <a onclick="renderInfo()">Info</a>
+                    <a onclick="renderStats()">Stats</a>
                     <a onclick="renderMoves()">Moves</a>
                     <a href="#">Evolution</a>
                 </div>
@@ -39,7 +39,7 @@ function templateCard() {
         `
 }
 
-function templateStats(data) {
+function templateInfo(data) {
     return `
         <table>
             <tbody>
@@ -67,7 +67,61 @@ function templateStats(data) {
     `
 }
 
-function templateMoves(data){
+function templateStats(data) {
+    return `
+        <table>
+            <tbody>
+                <tr>
+                    ${templateStatbar(data,0)}
+                </tr>
+                <tr>
+                    ${templateStatbar(data,1)}
+                </tr>
+                <tr>
+                    ${templateStatbar(data,2)}
+                </tr>
+                <tr>
+                    ${templateStatbar(data,3)}
+                </tr>
+                <tr>
+                    ${templateStatbar(data,4)}
+                </tr>
+                <tr>
+                    ${templateStatbar(data,5)}
+                </tr>
+                <tr>
+                    ${templateTotalStats()}
+                </tr>
+            </tbody>
+        </table>
+    `
+}
+
+function templateStatbar(data,index) {
+    return `
+        <td>${data['stats'][index]['basestat']}:</td>
+        <td>${data['stats'][index]['value']}</td>
+        <td class="stat-width"> 
+            <div id="myProgress">
+                <div id="myBar" style="width:${getStatbarWidth(data['stats'][index]['value'])}%"></div>
+            </div>
+        </td>
+    `
+}
+
+function templateTotalStats(){
+    return `
+    <td>Total:</td>
+    <td>${totalStats()}</td>
+    <td class="stat-width"> 
+        <div id="myProgress">
+            <div id="myBar" style="width:${getStatbarWidth(totalStats(), true)}%"></div>
+        </div>
+    </td>
+`
+}
+
+function templateMoves(data) {
     return `
         <div class="move-div">${firstLetterToCapital(data)}</div>
     `

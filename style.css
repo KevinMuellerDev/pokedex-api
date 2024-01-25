@@ -2,6 +2,7 @@
     --white-font: white;
     --spinner: #344753;
     --spinner-bg: #f3f3f3;
+    --statbar: #344753 ;
     --header: linear-gradient(155deg, #6960b1, #11009E);
     --fire: linear-gradient(155deg, #fe8c90, #c43237);
     --bug: linear-gradient(155deg, #5cdab6, #209272);
@@ -98,14 +99,16 @@ main {
     gap: 16px;
 }
 
-.poke-info div, #card-type div {
+.poke-info div,
+#card-type div {
     width: 40px;
     padding: 8px 24px;
     border-radius: 16px;
     background-color: rgba(255, 255, 255, 0.1);
 }
 
-.poke-info p, .card-info p {
+.poke-info p,
+.card-info p {
     position: absolute;
     top: 20px;
     right: 20px;
@@ -176,7 +179,7 @@ main {
     border-radius: 16px;
 }
 
-#card-container{
+#card-container {
     position: absolute;
     display: flex;
     justify-content: center;
@@ -195,26 +198,26 @@ main {
     border-radius: 16px 16px 0px 0px;
 }
 
-.card-info{
+.card-info {
     padding: 16px 24px;
 }
 
-#card-type{
+#card-type {
     display: flex;
     gap: 12px;
     margin-block-start: 16px;
 }
 
 
-.card-pokeball{
+.card-pokeball {
     position: absolute;
     bottom: 32px;
     right: 16px;
-    height:128px;
+    height: 128px;
     transform: rotate(-25deg);
 }
 
-.card-sprite{
+.card-sprite {
     position: absolute;
     display: flex;
     justify-content: center;
@@ -234,36 +237,39 @@ main {
     border-top: 1px solid rgba(0, 0, 0, 0.2);
 }
 
-.card-bottom span{
-    color: black;
+.card-bottom span {
+    color: rgba(0, 0, 0, 0.8);
 }
 
 
-.nav-card{
+.nav-card {
     margin-block-start: 24px;
     display: flex;
     justify-content: space-around;
 }
 
-.nav-card a{
+.nav-card a {
     color: black;
     cursor: pointer;
 }
 
-td{
-    color: black;
+td {
+    color: rgba(0, 0, 0, 0.8);
+    padding: 4px 0px;
 }
 
-td:first-child{
+
+td:first-child {
     display: block;
     padding-right: 24px;
 }
-table{
+
+table {
     padding: 24px 0px;
     font-size: 14px;
 }
 
-#moves-container{
+#moves-container {
     flex-wrap: wrap;
     display: flex;
     justify-content: flex-start;
@@ -271,11 +277,28 @@ table{
     margin-top: 24px;
 }
 
-.move-div{
+.move-div {
     padding: 4px 8px;
-    background-color: rgba(0,0,0,0.1);
+    background-color: rgba(0, 0, 0, 0.1);
     font-size: small;
     border-radius: 16px;
-    color: rgba(0,0,0,0.6);
+    color: rgba(0, 0, 0, 0.6);
     box-shadow: 5px 5px 7px -5px rgba(0, 0, 0, 0.5);
+}
+
+#myProgress {
+    margin-left: 12px;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.1);
+    border-radius: 6px;
+}
+
+#myBar {
+    height: 12px;
+    background-color: rgba(48, 47, 56, 0.3);
+    border-radius: 6px;
+}
+
+.stat-width{
+    width: 40%;
 }
