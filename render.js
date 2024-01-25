@@ -47,7 +47,6 @@ function renderInfo() {
 }
 
 function renderStats() {
-    ''
     document.getElementById('card-content').innerHTML = '';
     document.getElementById('card-content').innerHTML = templateStats(pokemonDataCard[0]);
 }
@@ -64,6 +63,7 @@ function renderMoves() {
     }
 }
 
-function renderEvo() {
-
+function renderEvo(index) {
+    document.getElementById('card-content').innerHTML ='';
+    document.getElementById('card-content').innerHTML =templateEvo();
 }

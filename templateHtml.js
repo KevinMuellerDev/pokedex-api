@@ -72,22 +72,22 @@ function templateStats(data) {
         <table>
             <tbody>
                 <tr>
-                    ${templateStatbar(data,0)}
+                    ${templateStatbar(data, 0)}
                 </tr>
                 <tr>
-                    ${templateStatbar(data,1)}
+                    ${templateStatbar(data, 1)}
                 </tr>
                 <tr>
-                    ${templateStatbar(data,2)}
+                    ${templateStatbar(data, 2)}
                 </tr>
                 <tr>
-                    ${templateStatbar(data,3)}
+                    ${templateStatbar(data, 3)}
                 </tr>
                 <tr>
-                    ${templateStatbar(data,4)}
+                    ${templateStatbar(data, 4)}
                 </tr>
                 <tr>
-                    ${templateStatbar(data,5)}
+                    ${templateStatbar(data, 5)}
                 </tr>
                 <tr>
                     ${templateTotalStats()}
@@ -97,7 +97,7 @@ function templateStats(data) {
     `
 }
 
-function templateStatbar(data,index) {
+function templateStatbar(data, index) {
     return `
         <td>${data['stats'][index]['basestat']}:</td>
         <td>${data['stats'][index]['value']}</td>
@@ -109,7 +109,7 @@ function templateStatbar(data,index) {
     `
 }
 
-function templateTotalStats(){
+function templateTotalStats() {
     return `
     <td><b>Total:</b></td>
     <td><b>${totalStats()}</b></td>
@@ -125,4 +125,17 @@ function templateMoves(data) {
     return `
         <div class="move-div">${firstLetterToCapital(data)}</div>
     `
+}
+
+function templateEvo() {
+    let textHtml = '';
+    for (let i = 0; i < evoData.length; i++) {
+        const evolution = evoData[i];
+        textHtml += `
+            <div>
+                <img src="${evolution.sprite}" alt=""style="height: 60px">
+            </div>
+         `
+    }
+    return textHtml
 }

@@ -43,7 +43,7 @@ async function loadPokemonCard(index) {
     let height = (responseAsJsonCard['height'] / 10).toFixed(1);
     let weight = (responseAsJsonCard['weight'] / 10).toFixed(1);
     let stats = getStats((responseAsJsonCard)['stats']);
-    loadEvo();
+    loadEvo(getId(responseAsJsonSpecies.evolution_chain.url));
 
     let jsonPokeDataCard = {
         'species': species, 'flavortext': flavorText,
@@ -157,6 +157,7 @@ async function loadEvo(index) {
     let url = `https://pokeapi.co/api/v2/evolution-chain/${index}/`;
     let response = await fetch(url);
     let responseAsJson = await response.json();
+    evoData = [];
     pushEvo(responseAsJson.chain.species);
 
     if (responseAsJson.chain.evolves_to.length > 0) {
@@ -170,7 +171,7 @@ async function loadEvo(index) {
 
 function pushEvo(data){
     let name = data.name;
-    let id = getEvoId(data.url)
+    let id = getId(data.url)
     let sprite = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${id}.png`
     let evoJson= {'name': name, 'id':id, 'sprite':sprite}
 
@@ -178,6 +179,6 @@ function pushEvo(data){
 }
 
 
-function getEvoId(link) {
+function getId(link) {
     return link.slice(-5).replace(/\D/g, '');
 }
