@@ -143,8 +143,11 @@ function totalStats() {
 }
 
 
-function getStatbarWidth(value, state) {
-    if (state === true) {
+function getStatbarWidth(value,baseStat,state) {
+    if (baseStat === 'Hp'){
+        let statWidth = Number((100 / 255) * value);
+        return statWidth;
+    }else if (state === true) {
         let statWidth = Number((100 / 780) * value);
         return statWidth;
     } else {
