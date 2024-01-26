@@ -2,7 +2,7 @@
     --white-font: white;
     --spinner: #344753;
     --spinner-bg: #f3f3f3;
-    --statbar: #344753 ;
+    --statbar: #344753;
     --header: linear-gradient(155deg, #6960b1, #11009E);
     --fire: linear-gradient(155deg, #fe8c90, #c43237);
     --bug: linear-gradient(155deg, #5cdab6, #209272);
@@ -253,7 +253,12 @@ main {
     cursor: pointer;
 }
 
-td, td b {
+#card-content {
+    height: 80%;
+}
+
+td,
+td b {
     color: rgba(0, 0, 0, 0.8);
     padding: 4px 0px;
 }
@@ -300,6 +305,40 @@ table {
     border-radius: 6px;
 }
 
-.stat-width{
+.stat-width {
     width: 40%;
+}
+
+#evocontent {
+    padding: 24px 0px;
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    justify-content: center;
+    height: 80%;
+}
+
+#evocontent div {
+    position: relative;
+    border-radius: 24px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+}
+
+#evocontent img {
+    position: absolute;
+    height: 80px;
+}
+
+#evocontent h3{
+    position: absolute;
+    right: 16px;
+    color: rgba(255, 255, 255, 0.25);
+}
+
+#evocontent h4{
+    position: absolute;
+    left: 35%;
+    color: var(--white-font);
 }

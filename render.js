@@ -65,5 +65,6 @@ function renderMoves() {
 
 function renderEvo(index) {
     document.getElementById('card-content').innerHTML ='';
-    document.getElementById('card-content').innerHTML =templateEvo();
+    document.getElementById('card-content').innerHTML ='<div id="evocontent"></div>'; 
+    document.getElementById('evocontent').innerHTML =templateEvo(index-1);
 }

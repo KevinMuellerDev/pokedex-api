@@ -127,15 +127,19 @@ function templateMoves(data) {
     `
 }
 
-function templateEvo() {
+function templateEvo(index) {
     let textHtml = '';
     for (let i = 0; i < evoData.length; i++) {
         const evolution = evoData[i];
         textHtml += `
-            <div>
-                <img src="${evolution.sprite}" alt=""style="height: 60px">
+            <div style="background: var(--${pokemonData[index].types[0]})">
+                <img src="${evolution.sprite}" alt="">
+                <h4>${firstLetterToCapital(evolution.name)}</h4>
+                <h3>#${evolution.id}</h3>
             </div>
          `
     }
     return textHtml
 }
+
+// 
