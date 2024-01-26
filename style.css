@@ -3,7 +3,7 @@
     --spinner: #344753;
     --spinner-bg: #f3f3f3;
     --statbar: #344753;
-    --header: linear-gradient(155deg, #6960b1, #11009E);
+    --header: linear-gradient(155deg, #6960b1, #1b3d88);
     --fire: linear-gradient(155deg, #fe8c90, #c43237);
     --bug: linear-gradient(155deg, #5cdab6, #209272);
     --electric: linear-gradient(155deg, #f3c246, #b48307);
@@ -316,7 +316,7 @@ table {
     width: 1px;
     height: 12px;
     border-radius: 6px;
-    transition: all 1s linear;
+    transition: all 0.75s ease-in-out;
 }
 
 .stat-width {
@@ -365,7 +365,23 @@ table {
     bottom: 0;
 }
 
-.show-nav img{
+.show-nav img {
     height: 40px;
     cursor: pointer;
 }
+
+footer div {
+    margin: 24px;
+    display: flex;
+    justify-content: center;
+    background: var(--header);
+    border-radius: 20px;
+    align-items: center;
+    height: 40px;
+    width: 200px;
+    cursor: pointer;
+    transition: all 125ms ease-in-out;
+}
+
+footer div:hover {
+    box-shadow: 0px 0px 8px 3px rgba(0, 0, 0, 0.5);}
