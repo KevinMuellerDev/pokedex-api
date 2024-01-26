@@ -2,6 +2,8 @@ let pokemonData = [];
 let pokemonDataCard = [];
 let evoData = [];
 let dataOffset = 0;
+let currentId = 0;
+
 
 async function init() {
     toggleLoadingSpinner(true);
@@ -22,7 +24,6 @@ async function loadPokemonTiles() {
         let pokeId = responseAsJson['id'];
         let jsonPokeData = { 'name': name, 'sprite': sprite, 'types': types, 'id': pokeId };
         pokemonData.push(jsonPokeData);
-        console.log(responseAsJson);
     }
 }
 
@@ -92,17 +93,19 @@ function toggleLoadingSpinner(state) {
 }
 
 
-async function showCard(index) {
-    toggleLoadingSpinner(true);
+async function showCard(index, card) {
+    if (!card) { toggleLoadingSpinner(true); }
+    currentId = index;
     await loadPokemonCard(index)
     renderCard(index);
-    toggleLoadingSpinner(false);
+    if (!card) { toggleLoadingSpinner(false); }
     document.getElementById('card-container').classList.remove('d-none');
 }
 
 
 function closeCard() {
     document.getElementById('card-container').classList.add('d-none');
+    currentId = 0;
 }
 
 
@@ -133,7 +136,6 @@ function getStats(data) {
 
 function totalStats() {
     let statsData = pokemonDataCard[0]['stats'];
-    console.log(statsData)
     let statsTotal = 0;
     for (let i = 0; i < statsData.length; i++) {
         const statsValue = Number(statsData[i]['value']);
@@ -143,11 +145,11 @@ function totalStats() {
 }
 
 
-function getStatbarWidth(value,baseStat,state) {
-    if (baseStat === 'Hp'){
+function getStatbarWidth(value, baseStat, state) {
+    if (baseStat === 'Hp') {
         let statWidth = Number((100 / 255) * value);
         return statWidth;
-    }else if (state === true) {
+    } else if (state === true) {
         let statWidth = Number((100 / 780) * value);
         return statWidth;
     } else {
@@ -172,11 +174,11 @@ async function loadEvo(index) {
     }
 }
 
-function pushEvo(data){
+function pushEvo(data) {
     let name = data.name;
     let id = getId(data.url)
     let sprite = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${id}.png`
-    let evoJson= {'name': name, 'id':id, 'sprite':sprite}
+    let evoJson = { 'name': name, 'id': id, 'sprite': sprite }
 
     evoData.push(evoJson);
 }
@@ -184,4 +186,27 @@ function pushEvo(data){
 
 function getId(link) {
     return link.slice(-5).replace(/\D/g, '');
+}
+
+function activateNav(id) {
+    for (let i = 1; i < 5; i++) {
+        document.getElementById(`nav${i}`).classList.remove('nav-active')
+    }
+    document.getElementById(`nav${id}`).classList.add('nav-active')
+}
+
+function nextPokemon(id) {
+    if (id == 25) {
+        return
+    } else if (id == dataOffset) {
+        return
+    }
+    showCard(id,true);
+}
+
+function previousPokemon(id) {
+    if (id == 1) {
+        return
+    }
+    showCard(id - 2,true);
 }

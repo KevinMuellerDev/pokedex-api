@@ -227,6 +227,7 @@ main {
 }
 
 .card-bottom {
+    position: relative;
     padding: 0px 16px;
     background: var(--white-font);
     z-index: 1000;
@@ -249,8 +250,21 @@ main {
 }
 
 .nav-card a {
-    color: black;
+    color: #53556059;
     cursor: pointer;
+    transition: all 75ms ease-in-out;
+    border-bottom: 1px solid transparent;
+}
+
+.nav-card a:hover {
+    color: rgba(0, 0, 0, 0.8);
+}
+
+
+.nav-active {
+    color: rgba(0, 0, 0, 0.8) !important;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.8) !important;
+
 }
 
 #card-content {
@@ -270,7 +284,7 @@ td:first-child {
 }
 
 table {
-    padding: 24px 0px;
+    padding: 24px 0px 0px;
     font-size: 14px;
 }
 
@@ -302,6 +316,7 @@ table {
     width: 1px;
     height: 12px;
     border-radius: 6px;
+    transition: all 3s linear;
 }
 
 .stat-width {
@@ -330,14 +345,27 @@ table {
     height: 80px;
 }
 
-#evocontent h3{
+#evocontent h3 {
     position: absolute;
     right: 16px;
     color: rgba(255, 255, 255, 0.25);
 }
 
-#evocontent h4{
+#evocontent h4 {
     position: absolute;
     left: 35%;
     color: var(--white-font);
+}
+
+.show-nav {
+    position: absolute;
+    display: flex;
+    justify-content: space-around;
+    width: 90%;
+    bottom: 0;
+}
+
+.show-nav img{
+    height: 40px;
+    cursor: pointer;
 }
