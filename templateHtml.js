@@ -29,7 +29,7 @@ function templateCard(index) {
             <div class="card-bottom">
                 <div class="nav-card">
                     <a onclick="renderInfo()">Info</a>
-                    <a onclick="renderStats()">Stats</a>
+                    <a onclick="renderStats(${index})">Stats</a>
                     <a onclick="renderMoves()">Moves</a>
                     <a onclick="renderEvo(${index})">Evolution</a>
                 </div>
@@ -67,55 +67,55 @@ function templateInfo(data) {
     `
 }
 
-function templateStats(data) {
+function templateStats(data, index) {
     return `
         <table>
             <tbody>
                 <tr>
-                    ${templateStatbar(data, 0)}
+                    ${templateStatbar(data, 0, index)}
                 </tr>
                 <tr>
-                    ${templateStatbar(data, 1)}
+                    ${templateStatbar(data, 1, index)}
                 </tr>
                 <tr>
-                    ${templateStatbar(data, 2)}
+                    ${templateStatbar(data, 2, index)}
                 </tr>
                 <tr>
-                    ${templateStatbar(data, 3)}
+                    ${templateStatbar(data, 3, index)}
                 </tr>
                 <tr>
-                    ${templateStatbar(data, 4)}
+                    ${templateStatbar(data, 4, index)}
                 </tr>
                 <tr>
-                    ${templateStatbar(data, 5)}
+                    ${templateStatbar(data, 5, index)}
                 </tr>
                 <tr>
-                    ${templateTotalStats()}
+                    ${templateTotalStats(index)}
                 </tr>
             </tbody>
         </table>
     `
 }
 
-function templateStatbar(data, index) {
+function templateStatbar(data,index,barColor) {
     return `
         <td>${data['stats'][index]['basestat']}:</td>
         <td>${data['stats'][index]['value']}</td>
         <td class="stat-width"> 
             <div id="myProgress">
-                <div id="myBar" style="width:${getStatbarWidth(data['stats'][index]['value'])}%"></div>
+                <div id="myBar" style="width:${getStatbarWidth(data['stats'][index]['value'])}%; background: var(--${pokemonData[barColor].types[0]})"></div>
             </div>
         </td>
     `
 }
 
-function templateTotalStats() {
+function templateTotalStats(barColor) {
     return `
     <td><b>Total:</b></td>
     <td><b>${totalStats()}</b></td>
     <td class="stat-width"> 
         <div id="myProgress">
-            <div id="myBar" style="width:${getStatbarWidth(totalStats(), true)}%"></div>
+            <div id="myBar" style="width:${getStatbarWidth(totalStats(), true)}%; background: var(--${pokemonData[barColor].types[0]})"></div>
         </div>
     </td>
 `

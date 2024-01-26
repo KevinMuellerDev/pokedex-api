@@ -43,7 +43,7 @@ async function loadPokemonCard(index) {
     let height = (responseAsJsonCard['height'] / 10).toFixed(1);
     let weight = (responseAsJsonCard['weight'] / 10).toFixed(1);
     let stats = getStats((responseAsJsonCard)['stats']);
-    loadEvo(getId(responseAsJsonSpecies.evolution_chain.url));
+    await loadEvo(getId(responseAsJsonSpecies.evolution_chain.url));
 
     let jsonPokeDataCard = {
         'species': species, 'flavortext': flavorText,

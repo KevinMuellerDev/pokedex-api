@@ -42,14 +42,17 @@ function renderCard(index) {
     document.getElementById('card-content').innerHTML = templateInfo(pokemonDataCard[0]);
 }
 
+
 function renderInfo() {
     document.getElementById('card-content').innerHTML = templateInfo(pokemonDataCard[0]);
 }
 
-function renderStats() {
+
+function renderStats(index) {
     document.getElementById('card-content').innerHTML = '';
-    document.getElementById('card-content').innerHTML = templateStats(pokemonDataCard[0]);
+    document.getElementById('card-content').innerHTML = templateStats(pokemonDataCard[0],index-1);
 }
+
 
 function renderMoves() {
     let content = document.getElementById('card-content');
@@ -62,6 +65,7 @@ function renderMoves() {
         document.getElementById('moves-container').innerHTML += templateMoves(move);
     }
 }
+
 
 function renderEvo(index) {
     document.getElementById('card-content').innerHTML ='';
