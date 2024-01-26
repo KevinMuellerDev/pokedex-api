@@ -108,29 +108,40 @@ function templateStats(data, index) {
     `
 }
 
-function templateStatbar(data,index,barColor) {
+function templateStatbar(data, index, barColor) {
     let baseStats = data['stats'][index]['basestat'];
     let statValues = data['stats'][index]['value'];
-    let bar =pokemonData[barColor].types[0];
+    let bar = pokemonData[barColor].types[0];
+
+    setTimeout(() => {
+        document.getElementById(`myBar-${index}`).style.width = `${getStatbarWidth(statValues, baseStats)}%`;
+    }, 100);
+
     return `
         <td>${baseStats}:</td>
         <td>${statValues}</td>
         <td class="stat-width"> 
-            <div id="myProgress">
-                <div id="myBar" style="width:${getStatbarWidth(statValues,baseStats)}%; background: var(--${bar})"></div>
+            <div id="myProgress-${index}" class="myprogress">
+                <div id="myBar-${index}" class="mybar" style="width: 0%; background: var(--${bar})"></div>
             </div>
         </td>
-    `
+    `;
 }
+
 
 function templateTotalStats(barColor) {
     let bar =pokemonData[barColor].types[0];
+
+    setTimeout(() => {
+        document.getElementById('myBar').style.width = `${getStatbarWidth(totalStats(),null,true)}%`;
+    }, 100);
+
     return `
     <td><b>Total:</b></td>
     <td><b>${totalStats()}</b></td>
     <td class="stat-width"> 
-        <div id="myProgress">
-            <div id="myBar" style="width:${getStatbarWidth(totalStats(),null,true)}%; background: var(--${bar})"></div>
+        <div id="myProgress" class="myprogress">
+            <div id="myBar" class="mybar" style="width:0%; background: var(--${bar})"></div>
         </div>
     </td>
 `
