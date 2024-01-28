@@ -18,6 +18,11 @@ function renderPokemonTiles(data, dataOffs) {
 }
 
 
+/*  @tile: receiving the current tile id.
+    @index: receiving the index from renderPokemonTiles.
+    @mode: boolean to decide if the type should be rendered in the tile or the card
+    This function gets the id of the last rendered element to fill it with its 
+    needed data. */
 function renderPokemonTileType(tile, index, mode) {
     for (let j = 0; j < tile.types.length; j++) {
         const element = tile.types[j];
@@ -31,6 +36,9 @@ function renderPokemonTileType(tile, index, mode) {
 }
 
 
+/*  @index: gets the index of the clicked tile.
+    renders the clicked card with all its informations.
+*/
 function renderCard(index) {
     document.getElementById('card-container').innerHTML = templateCard(index + 1);
     document.getElementById('card-type').innerHTML = '';
@@ -43,17 +51,17 @@ function renderCard(index) {
 }
 
 
-function renderInfo() {
-    document.getElementById('card-content').innerHTML = templateInfo(pokemonDataCard[0]);
-}
-
-
+/*  @index: gets the current index of shown pokemon
+    Renders the stats of the pokemon.
+*/
 function renderStats(index) {
     document.getElementById('card-content').innerHTML = '';
     document.getElementById('card-content').innerHTML = templateStats(pokemonDataCard[0],index-1);
 }
 
-
+/*  this function renders the moves of the current pokemon.
+    If there are less than 15 moves it just renders the amount of moves it has.
+*/
 function renderMoves() {
     let content = document.getElementById('card-content');
     content.innerHTML = '';
@@ -75,6 +83,9 @@ function renderMoves() {
 }
 
 
+/*  @index: gets the current index of pokemon.
+    renders the evolution stages of the chosen pokemon.
+*/
 function renderEvo(index) {
     document.getElementById('card-content').innerHTML ='';
     document.getElementById('card-content').innerHTML ='<div id="evocontent"></div>'; 
