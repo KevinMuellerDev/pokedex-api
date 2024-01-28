@@ -50,6 +50,11 @@ function renderCard(index) {
     document.getElementById('card-content').innerHTML = templateInfo(pokemonDataCard[0]);
 }
 
+/* renders the info section of the card */
+function renderInfo() {
+    document.getElementById('card-content').innerHTML = templateInfo(pokemonDataCard[0]);
+}
+
 
 /*  @index: gets the current index of shown pokemon
     Renders the stats of the pokemon.
