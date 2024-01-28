@@ -24,6 +24,7 @@ async function loadPokemonTiles() {
         let pokeId = responseAsJson['id'];
         let jsonPokeData = { 'name': name, 'sprite': sprite, 'types': types, 'id': pokeId };
         pokemonData.push(jsonPokeData);
+        console.log(responseAsJson);
     }
 }
 

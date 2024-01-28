@@ -17,37 +17,55 @@ function templateCard(index) {
     return `
         <div class="blur-bg" onclick="closeCard()"></div>
         <div id="card">
-            <div id="card-display" class="card-top" style="">
-                <div id="poke-card-info" class="card-info">
-                    <h2 id="pokemon-name-card"></h2>
-                    <p id="pokemon-id-card"></p>
-                    <div id="card-type"></div>
-                </div>
-                <img class="card-pokeball" src="./img/pokeball-fade.png" alt="">
-            </div>
+            ${templateCardDisplay()}
             <img id="sprite-card" class="card-sprite" src="" alt="">
             <div class="card-bottom">
-                <div class="nav-card">
-                    <a id="nav1" class="nav-active" onclick="renderInfo();activateNav(1);">Info</a>
-                    <a id="nav2" onclick="renderStats(${index});activateNav(2);">Stats</a>
-                    <a id="nav3" onclick="renderMoves();activateNav(3);">Moves</a>
-                    <a id="nav4" onclick="renderEvo(${index});activateNav(4);">Evolution</a>
-                </div>
+                ${templateCardNav(index)}
                 <div id="card-content"></div>
                 <div class="show-nav">
-                <div>
-                    <img src="./img/arrowleft.png" alt="" onclick="previousPokemon(${index})">
-                </div>
-                <div>
-                    <img src="./img/x.png" alt="" onclick="closeCard()">
-                </div>
-                <div>
-                    <img src="./img/arrowright.png" alt="" onclick="nextPokemon(${index})">
-                </div>
+                    ${templateCardShowNav(index)}
                 </div>
             </div>
         </div>
         `
+}
+
+function templateCardDisplay(){
+    return `
+        <div id="card-display" class="card-top" style="">
+            <div id="poke-card-info" class="card-info">
+                <h2 id="pokemon-name-card"></h2>
+                <p id="pokemon-id-card"></p>
+                <div id="card-type"></div>
+            </div>
+            <img class="card-pokeball" src="./img/pokeball-fade.png" alt="">
+        </div>
+    `
+}
+
+function templateCardNav(index){
+    return `
+        <div class="nav-card">
+            <a id="nav1" class="nav-active" onclick="renderInfo();activateNav(1);">Info</a>
+            <a id="nav2" onclick="renderStats(${index});activateNav(2);">Stats</a>
+            <a id="nav3" onclick="renderMoves();activateNav(3);">Moves</a>
+            <a id="nav4" onclick="renderEvo(${index});activateNav(4);">Evolution</a>
+        </div>
+    `
+}
+
+function templateCardShowNav(index){
+    return `
+        <div>
+            <img src="./img/arrowleft.png" alt="" onclick="previousPokemon(${index})">
+        </div>
+        <div>
+            <img src="./img/x.png" alt="" onclick="closeCard()">
+        </div>
+        <div>
+            <img src="./img/arrowright.png" alt="" onclick="nextPokemon(${index})">
+        </div>
+    `
 }
 
 function templateInfo(data) {
