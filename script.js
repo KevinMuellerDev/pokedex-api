@@ -5,6 +5,7 @@ let dataOffset = 0;
 let currentId = 0;
 
 
+/* load pokemon tiles with loading spinner */
 async function init() {
     toggleLoadingSpinner(true);
     await loadPokemonTiles();
@@ -13,6 +14,18 @@ async function init() {
 }
 
 
+/* load the card with spinner, if called by shownav section spinner is deactivated */ 
+async function showCard(index, card) {
+    if (!card) { toggleLoadingSpinner(true); }
+    currentId = index;
+    await loadPokemonCard(index)
+    renderCard(index);
+    if (!card) { toggleLoadingSpinner(false); }
+    document.getElementById('card-container').classList.remove('d-none');
+}
+
+
+/* gets the data from the PokeApi and pushes it into global json */
 async function loadPokemonTiles() {
     for (let i = 1 + dataOffset; i <= 25 + dataOffset; i++) {
         let url = `https://pokeapi.co/api/v2/pokemon/${i}`;
@@ -29,6 +42,7 @@ async function loadPokemonTiles() {
 }
 
 
+/* gets the data from the PokeApi and pushes it into global json */
 async function loadPokemonCard(index) {
     pokemonDataCard = [];
     let urlSpecies = `https://pokeapi.co/api/v2/pokemon-species/${index + 1}`;
@@ -56,6 +70,7 @@ async function loadPokemonCard(index) {
 }
 
 
+/* changes the first letter into Capital */
 function firstLetterToCapital(name) {
     let str = name;
     let modStr = str[0].toUpperCase() + str.slice(1);
@@ -64,6 +79,7 @@ function firstLetterToCapital(name) {
 }
 
 
+/* retrieves moves from the given json */
 function getMoves(data) {
     let moves = [];
     for (let i = 0; i < data.length; i++) {
@@ -74,6 +90,7 @@ function getMoves(data) {
 }
 
 
+/* retrieves type from the given json */
 function getType(data) {
     let types = [];
     for (let i = 0; i < data.length; i++) {
@@ -84,7 +101,7 @@ function getType(data) {
     return types
 }
 
-
+/* activates and deactivates the loading spinner */
 function toggleLoadingSpinner(state) {
     if (state == true) {
         document.getElementById('spinner').classList.remove('d-none')
@@ -94,22 +111,14 @@ function toggleLoadingSpinner(state) {
 }
 
 
-async function showCard(index, card) {
-    if (!card) { toggleLoadingSpinner(true); }
-    currentId = index;
-    await loadPokemonCard(index)
-    renderCard(index);
-    if (!card) { toggleLoadingSpinner(false); }
-    document.getElementById('card-container').classList.remove('d-none');
-}
-
-
+/* this function closes the card by clicking outside of it */
 function closeCard() {
     document.getElementById('card-container').classList.add('d-none');
     currentId = 0;
 }
 
 
+/* retrieves the abilities from given json */
 function getAbilities(data) {
     let firstAbilities = [];
     for (let i = 0; i < data.length; i++) {
@@ -119,7 +128,7 @@ function getAbilities(data) {
     return firstAbilities
 }
 
-
+/* retrieves the stats from given json */
 function getStats(data) {
     let stats = [];
     for (let i = 0; i < data.length; i++) {
@@ -134,7 +143,7 @@ function getStats(data) {
     return stats;
 }
 
-
+/* returns the total amount of statpoints */
 function totalStats() {
     let statsData = pokemonDataCard[0]['stats'];
     let statsTotal = 0;
@@ -146,6 +155,7 @@ function totalStats() {
 }
 
 
+/* calculates the width of the statbar; baseStat: looking for the Hp value; state: looking for the total value */
 function getStatbarWidth(value, baseStat, state) {
     if (baseStat === 'Hp') {
         let statWidth = Number((100 / 255) * value);
@@ -159,6 +169,8 @@ function getStatbarWidth(value, baseStat, state) {
     }
 }
 
+
+/* gets the evolution data from the PokeApi */
 async function loadEvo(index) {
     let url = `https://pokeapi.co/api/v2/evolution-chain/${index}/`;
     let response = await fetch(url);
@@ -175,6 +187,8 @@ async function loadEvo(index) {
     }
 }
 
+
+/* pushes the evolution data (name, id, sprite) into the evolution json */
 function pushEvo(data) {
     let name = data.name;
     let id = getId(data.url)
@@ -185,10 +199,13 @@ function pushEvo(data) {
 }
 
 
+/* gets the id from the given url */
 function getId(link) {
     return link.slice(-5).replace(/\D/g, '');
 }
 
+
+/* activates or deactivates the active effect on the card nav */
 function activateNav(id) {
     for (let i = 1; i < 5; i++) {
         document.getElementById(`nav${i}`).classList.remove('nav-active')
@@ -196,6 +213,8 @@ function activateNav(id) {
     document.getElementById(`nav${id}`).classList.add('nav-active')
 }
 
+
+/* show the next pokemon in card */
 function nextPokemon(id) {
     if (id == 25) {
         return
@@ -205,6 +224,8 @@ function nextPokemon(id) {
     showCard(id,true);
 }
 
+
+/* show the previous pokemon in card */
 function previousPokemon(id) {
     if (id == 1) {
         return
