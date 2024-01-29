@@ -17,12 +17,13 @@ function renderPokemonTiles(data, dataOffs) {
     dataOffset += 25;
 }
 
-
-/*  @tile: receiving the current tile id.
-    @index: receiving the index from renderPokemonTiles.
-    @mode: boolean to decide if the type should be rendered in the tile or the card
-    This function gets the id of the last rendered element to fill it with its 
-    needed data. */
+/**
+ * This function gets the id of the last rendered element to fill it with its 
+ * needed data
+ * @param {JSON} tile - receiving the current tile data.
+ * @param {Number} index - receiving the index from renderPokemonTiles
+ * @param {String} mode - string to decide if the file should be rendered in the tile or the card
+ */
 function renderPokemonTileType(tile, index, mode) {
     for (let j = 0; j < tile.types.length; j++) {
         const element = tile.types[j];
