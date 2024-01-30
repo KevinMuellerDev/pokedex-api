@@ -1,7 +1,9 @@
-/*  @data: receiving the pokemonData JSON.
-    @dataOffs: receiving the Offset to render the template from the last added tile.
-    This function gets the ids of the rendered elements to fill them with their 
-    needed data and increments the offset at the end.   */
+/**
+ * This function gets the ids of the rendered elements to fill them with their
+ * needed data and increment the offset at the end
+ * @param {object} data - receiving current tile data
+ * @param {number} dataOffs - receiving the index
+ */
 function renderPokemonTiles(data, dataOffs) {
     for (let i = 0 + dataOffs; i < data.length; i++) {
         const tile = data[i];
@@ -17,12 +19,13 @@ function renderPokemonTiles(data, dataOffs) {
     dataOffset += 25;
 }
 
+
 /**
  * This function gets the id of the last rendered element to fill it with its 
  * needed data
- * @param {JSON} tile - receiving the current tile data.
- * @param {Number} index - receiving the index from renderPokemonTiles
- * @param {String} mode - string to decide if the file should be rendered in the tile or the card
+ * @param {object} tile - receiving the current tile data.
+ * @param {number} index - receiving the index from renderPokemonTiles
+ * @param {string} mode - string to decide if the file should be rendered in the tile or the card
  */
 function renderPokemonTileType(tile, index, mode) {
     for (let j = 0; j < tile.types.length; j++) {
@@ -37,9 +40,10 @@ function renderPokemonTileType(tile, index, mode) {
 }
 
 
-/*  @index: gets the index of the clicked tile.
-    renders the clicked card with all its informations.
-*/
+/**
+ * Renders the clicked card with all its informations.
+ * @param {number} index - receiving the index
+ */
 function renderCard(index) {
     document.getElementById('card-container').innerHTML = templateCard(index + 1);
     document.getElementById('card-type').innerHTML = '';
@@ -51,23 +55,29 @@ function renderCard(index) {
     document.getElementById('card-content').innerHTML = templateInfo(pokemonDataCard[0]);
 }
 
-/* renders the info section of the card */
+
+/**
+ * Renders the info section fo the card
+ */
 function renderInfo() {
     document.getElementById('card-content').innerHTML = templateInfo(pokemonDataCard[0]);
 }
 
 
-/*  @index: gets the current index of shown pokemon
-    Renders the stats of the pokemon.
-*/
+/**
+ * Renders the stats of the pokemon.
+ * @param {number} index - gets the current index of shown Pokemon
+ */
 function renderStats(index) {
     document.getElementById('card-content').innerHTML = '';
     document.getElementById('card-content').innerHTML = templateStats(pokemonDataCard[0],index-1);
 }
 
-/*  this function renders the moves of the current pokemon.
-    If there are less than 15 moves it just renders the amount of moves it has.
-*/
+
+/**
+ * Renders the moves of the current Pokemon.
+ * If there are less than 15 moves it just renders the amount of moves it has.
+ */
 function renderMoves() {
     let content = document.getElementById('card-content');
     content.innerHTML = '';
@@ -89,9 +99,10 @@ function renderMoves() {
 }
 
 
-/*  @index: gets the current index of pokemon.
-    renders the evolution stages of the chosen pokemon.
-*/
+/**
+ * Renders the evolution stages of chosen Pokemon
+ * @param {number} index - gets the index of the current Pokemon
+ */
 function renderEvo(index) {
     document.getElementById('card-content').innerHTML ='';
     document.getElementById('card-content').innerHTML ='<div id="evocontent"></div>'; 
