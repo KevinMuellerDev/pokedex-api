@@ -5,7 +5,9 @@ let dataOffset = 0;
 let currentId = 0;
 
 
-/* load pokemon tiles with loading spinner */
+/**
+ * Loads Pokemon tiles with loading spinner
+ */
 async function init() {
     toggleLoadingSpinner(true);
     await loadPokemonTiles();
@@ -14,7 +16,12 @@ async function init() {
 }
 
 
-/* load the card with spinner, if called by shownav section spinner is deactivated */ 
+/**
+ * - Loads the card with spinner
+ * - If called by shownav, spinner is deactivated
+ * @param {number} index - index of current Pokemon
+ * @param {boolean} card - if true show loading spinner
+ */
 async function showCard(index, card) {
     if (!card) { toggleLoadingSpinner(true); }
     currentId = index;
@@ -25,7 +32,10 @@ async function showCard(index, card) {
 }
 
 
-/* gets the data from the PokeApi and pushes it into global json */
+/**
+ * - Fetches data from PokeApi and pushes it into global json
+ * - loading limit of 25 Pokemon at once
+ */
 async function loadPokemonTiles() {
     for (let i = 1 + dataOffset; i <= 25 + dataOffset; i++) {
         let url = `https://pokeapi.co/api/v2/pokemon/${i}`;
@@ -42,7 +52,10 @@ async function loadPokemonTiles() {
 }
 
 
-/* gets the data from the PokeApi and pushes it into global json */
+/**
+ * Gets data from the PokeApi and pushes it into global json
+ * @param {number} index - index of current Pokemon
+ */
 async function loadPokemonCard(index) {
     pokemonDataCard = [];
     let urlSpecies = `https://pokeapi.co/api/v2/pokemon-species/${index + 1}`;
@@ -70,7 +83,11 @@ async function loadPokemonCard(index) {
 }
 
 
-/* changes the first letter into Capital */
+/**
+ * Changes the first letter into capital
+ * @param {string} name - gets given string
+ * @returns  string with the first letter as capital
+ */
 function firstLetterToCapital(name) {
     let str = name;
     let modStr = str[0].toUpperCase() + str.slice(1);
@@ -79,7 +96,12 @@ function firstLetterToCapital(name) {
 }
 
 
-/* retrieves moves from the given json */
+
+/**
+ * retrieves moves from the given json and returns them in an array
+ * @param {object} data - object with dataset of moves
+ * @returns array containing all moves
+ */
 function getMoves(data) {
     let moves = [];
     for (let i = 0; i < data.length; i++) {
