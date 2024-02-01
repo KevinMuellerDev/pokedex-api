@@ -59,10 +59,16 @@ h1 {
 
 .search-bar{
     position: absolute;
-    bottom: 32px;
+    bottom: 16px;
     width: 240px;
-    height: 32px;
+    height: 16px;
     color: black;
+    padding: 8px;
+    border-radius: 16px;
+}
+
+.search-bar:focus-visible{
+    outline: none;
 }
 
 main {
@@ -348,6 +354,12 @@ table {
     height: 48px;
     display: flex;
     align-items: center;
+    cursor: default;
+    transition: transform 125ms ease-in-out;
+}
+
+#evocontent div:hover {
+transform: scale(1.05);
 }
 
 #evocontent img {
