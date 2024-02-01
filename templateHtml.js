@@ -1,5 +1,5 @@
-function templateTile(index) {
-    return `<div id="tile${index}" class="poke-tile" style ="" onclick="showCard(${index})">
+function templateTile(index, id) {
+    return `<div id="tile${index}" class="poke-tile" style ="" onclick="showCard(${id})">
                 <div id="tile-info${index}" class="poke-info">
                     <h4 id="pokemon-name${index}"></h4>
                     <p id="pokemon-id${index}"></p>

@@ -64,6 +64,7 @@ async function loadPokemonCard(index) {
     let urlCard = `https://pokeapi.co/api/v2/pokemon/${index + 1}`;
     let responseCard = await fetch(urlCard);
     let responseAsJsonCard = await responseCard.json();
+    console.log(responseAsJsonCard)
 
     let species = responseAsJsonSpecies['genera'][7].genus;
     let flavorText = responseAsJsonSpecies['flavor_text_entries'][11]['flavor_text'];
@@ -264,7 +265,7 @@ function searchPokemon(){
     }else{
         document.getElementById('load-button').classList.remove('d-none');
     }
-    
+
     for (let i = 0; i < pokemonData.length; i++) {
         const pokemon = pokemonData[i];
 

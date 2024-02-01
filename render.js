@@ -8,7 +8,7 @@ function renderPokemonTiles(data, dataOffs) {
     for (let i = 0 + dataOffs; i < data.length; i++) {
         const tile = data[i];
 
-        document.getElementById('tiles-container').innerHTML += templateTile(i);
+        document.getElementById('tiles-container').innerHTML += templateTile(i, tile.id-1);
         document.getElementById(`tile${i}`).style.background = `var(--${tile.types[0]})`;
         document.getElementById(`pokemon-name${i}`).innerHTML = firstLetterToCapital(tile.name);
         document.getElementById(`pokemon-id${i}`).innerHTML = `#${tile.id}`;
@@ -26,7 +26,7 @@ function renderPokemonSearch(data) {
     for (let i = 0 ; i < data.length; i++) {
         const tile = data[i];
 
-        document.getElementById('tiles-container').innerHTML += templateTile(i);
+        document.getElementById('tiles-container').innerHTML += templateTile(i, tile.id-1);
         document.getElementById(`tile${i}`).style.background = `var(--${tile.types[0]})`;
         document.getElementById(`pokemon-name${i}`).innerHTML = firstLetterToCapital(tile.name);
         document.getElementById(`pokemon-id${i}`).innerHTML = `#${tile.id}`;
