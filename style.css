@@ -47,6 +47,7 @@ header {
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
     filter: drop-shadow(-1px -4px 9px black);
 }
 
@@ -56,11 +57,20 @@ h1 {
     color: #ffce1fff;
 }
 
+.search-bar{
+    position: absolute;
+    bottom: 32px;
+    width: 240px;
+    height: 32px;
+    color: black;
+}
+
 main {
     display: flex;
     justify-content: space-around;
     flex-wrap: wrap;
     max-width: 1350px;
+    width: -webkit-fill-available;
 }
 
 .d-none {

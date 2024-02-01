@@ -20,6 +20,24 @@ function renderPokemonTiles(data, dataOffs) {
 }
 
 
+function renderPokemonSearch(data) {
+    document.getElementById('tiles-container').innerHTML = '';
+
+    for (let i = 0 ; i < data.length; i++) {
+        const tile = data[i];
+
+        document.getElementById('tiles-container').innerHTML += templateTile(i);
+        document.getElementById(`tile${i}`).style.background = `var(--${tile.types[0]})`;
+        document.getElementById(`pokemon-name${i}`).innerHTML = firstLetterToCapital(tile.name);
+        document.getElementById(`pokemon-id${i}`).innerHTML = `#${tile.id}`;
+        renderPokemonTileType(tile, i, 'tile');
+        document.getElementById(`sprite${i}`).src = tile.sprite
+        document.getElementById(`sprite${i}`).alt = tile.name
+    }
+}
+
+
+
 /**
  * This function gets the id of the last rendered element to fill it with its 
  * needed data

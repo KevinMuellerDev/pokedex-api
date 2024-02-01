@@ -3,6 +3,7 @@ let pokemonDataCard = [];
 let evoData = [];
 let dataOffset = 0;
 let currentId = 0;
+let pokemonSearch = [];
 
 
 /**
@@ -47,7 +48,6 @@ async function loadPokemonTiles() {
         let pokeId = responseAsJson['id'];
         let jsonPokeData = { 'name': name, 'sprite': sprite, 'types': types, 'id': pokeId };
         pokemonData.push(jsonPokeData);
-        console.log(responseAsJson);
     }
 }
 
@@ -253,4 +253,20 @@ function previousPokemon(id) {
         return
     }
     showCard(id - 2,true);
+}
+
+
+function searchPokemon(){
+    let searchValue = document.getElementById('search').value;
+
+    for (let i = 0; i < pokemonData.length; i++) {
+        const pokemon = pokemonData[i];
+
+        if (pokemonData[i].name.indexOf(searchValue) !== -1) {
+            pokemonSearch.push(pokemon);
+        }
+
+    }
+    renderPokemonSearch(pokemonSearch);
+    pokemonSearch=[];
 }
