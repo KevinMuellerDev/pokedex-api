@@ -259,13 +259,18 @@ function previousPokemon(id) {
 function searchPokemon(){
     let searchValue = document.getElementById('search').value;
 
+    if (searchValue !== '') {
+        document.getElementById('load-button').classList.add('d-none');
+    }else{
+        document.getElementById('load-button').classList.remove('d-none');
+    }
+    
     for (let i = 0; i < pokemonData.length; i++) {
         const pokemon = pokemonData[i];
 
         if (pokemonData[i].name.indexOf(searchValue) !== -1) {
             pokemonSearch.push(pokemon);
         }
-
     }
     renderPokemonSearch(pokemonSearch);
     pokemonSearch=[];
