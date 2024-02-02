@@ -113,7 +113,11 @@ function getMoves(data) {
 }
 
 
-/* retrieves type from the given json */
+/**
+ * retrieves type from the given json
+ * @param {object} data - gets the object that contains the pokemon types
+ * @returns array of Pokemon types
+ */
 function getType(data) {
     let types = [];
     for (let i = 0; i < data.length; i++) {
@@ -124,7 +128,11 @@ function getType(data) {
     return types
 }
 
-/* activates and deactivates the loading spinner */
+
+/**
+ * activates and deactivates the loading spinner
+ * @param {boolean} state - boolean to choose the state
+ */
 function toggleLoadingSpinner(state) {
     if (state == true) {
         document.getElementById('spinner').classList.remove('d-none')
@@ -134,14 +142,21 @@ function toggleLoadingSpinner(state) {
 }
 
 
-/* this function closes the card by clicking outside of it */
+
+/**
+ * function closes the card by clicking outside of it
+ */
 function closeCard() {
     document.getElementById('card-container').classList.add('d-none');
     currentId = 0;
 }
 
 
-/* retrieves the abilities from given json */
+/**
+ * retrieves the abilities from given json
+ * @param {object} data - gets the object that contains the Pokemon abilities
+ * @returns array of abilities
+ */
 function getAbilities(data) {
     let firstAbilities = [];
     for (let i = 0; i < data.length; i++) {
@@ -151,7 +166,12 @@ function getAbilities(data) {
     return firstAbilities
 }
 
-/* retrieves the stats from given json */
+
+/**
+ * Retrieve the stats from given json
+ * @param {object} data - gets the object that contains the Pokemon stats
+ * @returns array of Pokemon stats
+ */
 function getStats(data) {
     let stats = [];
     for (let i = 0; i < data.length; i++) {
@@ -167,6 +187,10 @@ function getStats(data) {
 }
 
 /* returns the total amount of statpoints */
+/**
+ * gets the total amount of stat points
+ * @returns sum of all stat points
+ */
 function totalStats() {
     let statsData = pokemonDataCard[0]['stats'];
     let statsTotal = 0;
@@ -178,7 +202,14 @@ function totalStats() {
 }
 
 
-/* calculates the width of the statbar; baseStat: looking for the Hp value; state: looking for the total value */
+
+/**
+ * calculates the width of the statbar
+ * @param {number} value - value of the given stat
+ * @param {string} baseStat - type of the value as a string 
+ * @param {boolean} state  - if true calculates for total stats
+ * @returns - the width of the animated statbar
+ */
 function getStatbarWidth(value, baseStat, state) {
     if (baseStat === 'Hp') {
         let statWidth = Number((100 / 255) * value);
@@ -193,7 +224,10 @@ function getStatbarWidth(value, baseStat, state) {
 }
 
 
-/* gets the evolution data from the PokeApi */
+/**
+ * gets the evolution data from the PokeApi
+ * @param {string} index - given index as a string
+ */
 async function loadEvo(index) {
     let url = `https://pokeapi.co/api/v2/evolution-chain/${index}/`;
     let response = await fetch(url);
