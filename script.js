@@ -245,7 +245,10 @@ async function loadEvo(index) {
 }
 
 
-/* pushes the evolution data (name, id, sprite) into the evolution json */
+/**
+ * pushes the evolution data (name, id, sprite) into the evolution json
+ * @param {object} data - object to get needed data
+ */
 function pushEvo(data) {
     let name = data.name;
     let id = getId(data.url)
@@ -256,13 +259,20 @@ function pushEvo(data) {
 }
 
 
-/* gets the id from the given url */
+/**
+ * extracts the id from the given url
+ * @param {string} link - given link as a string
+ * @returns the id from the url string
+ */
 function getId(link) {
     return link.slice(-5).replace(/\D/g, '');
 }
 
 
-/* activates or deactivates the active effect on the card nav */
+/**
+ * activates and deactivates the active effect on the card nav 
+ * @param {string} id - the id of the element to activate
+ */
 function activateNav(id) {
     for (let i = 1; i < 5; i++) {
         document.getElementById(`nav${i}`).classList.remove('nav-active')
@@ -271,7 +281,11 @@ function activateNav(id) {
 }
 
 
-/* show the next pokemon in card */
+/**
+ * Shoe the next Pokemon in card
+ * @param {number} id - current id
+ * @returns if pokemon is not loaded
+ */
 function nextPokemon(id) {
     if (id == 25) {
         return
@@ -282,7 +296,11 @@ function nextPokemon(id) {
 }
 
 
-/* show the previous pokemon in card */
+/**
+ * show the previous pokemon in card
+ * @param {number} id - current id 
+ * @returns if pokemon is not loaded
+ */
 function previousPokemon(id) {
     if (id == 1) {
         return
@@ -290,7 +308,10 @@ function previousPokemon(id) {
     showCard(id - 2,true);
 }
 
-
+/**
+ * - searches if pokemon is existing in json object.
+ * - if pokemon exists it gets displayed as a tile
+ */
 function searchPokemon(){
     let searchValue = document.getElementById('search').value;
 
