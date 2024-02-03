@@ -240,13 +240,13 @@ async function loadEvo(index) {
     if (responseAsJson.chain.evolves_to.length > 0) {
         for (let i = 0; i < responseAsJson.chain.evolves_to.length; i++) {
             const element = responseAsJson.chain.evolves_to[i];
-            pushEvo(responseAsJson.chain.evolves_to[i].species);
+            await pushEvo(responseAsJson.chain.evolves_to[i].species);
         }
 
         if (responseAsJson.chain.evolves_to[0].evolves_to.length > 0) {
             for (let i = 0; i < responseAsJson.chain.evolves_to[0].evolves_to.length; i++) {
                 const element = responseAsJson.chain.evolves_to[0].evolves_to[i];
-                pushEvo(responseAsJson.chain.evolves_to[0].evolves_to[0].species);
+                await pushEvo(responseAsJson.chain.evolves_to[0].evolves_to[0].species);
 
             }
         }
