@@ -122,7 +122,6 @@ function renderMoves() {
  * @param {number} index - gets the index of the current Pokemon
  */
 function renderEvo(index) {
-    document.getElementById('card-content').innerHTML ='';
     document.getElementById('card-content').innerHTML ='<div id="evocontent"></div>'; 
     document.getElementById('evocontent').innerHTML =templateEvo(index-1);
 }

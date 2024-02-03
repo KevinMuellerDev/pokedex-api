@@ -341,11 +341,11 @@ table {
 
 #evocontent {
     padding: 24px 0px;
-    display: flex;
     flex-direction: column;
     gap: 32px;
     justify-content: center;
-    height: 80%;
+    height: 75%;
+    overflow-y: scroll;
 }
 
 #evocontent div {
@@ -355,6 +355,7 @@ table {
     display: flex;
     align-items: center;
     cursor: default;
+    margin: 0px 8px 32px;
     transition: transform 125ms ease-in-out;
 }
 

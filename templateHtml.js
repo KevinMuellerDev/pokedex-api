@@ -176,7 +176,7 @@ function templateEvo(index) {
     for (let i = 0; i < evoData.length; i++) {
         const evolution = evoData[i];
         textHtml += `
-            <div style="background: var(--${pokemonData[index].types[0]})">
+            <div style="background: var(--${evolution.type})">
                 <img src="${evolution.sprite}" alt="">
                 <h4>${firstLetterToCapital(evolution.name)}</h4>
                 <h3>#${evolution.id}</h3>

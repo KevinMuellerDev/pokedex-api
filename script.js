@@ -64,7 +64,7 @@ async function loadPokemonCard(index) {
     let urlCard = `https://pokeapi.co/api/v2/pokemon/${index + 1}`;
     let responseCard = await fetch(urlCard);
     let responseAsJsonCard = await responseCard.json();
-    console.log(responseAsJsonCard)
+    //console.log(responseAsJsonCard)
 
     let species = responseAsJsonSpecies['genera'][7].genus;
     let flavorText = responseAsJsonSpecies['flavor_text_entries'][11]['flavor_text'];
@@ -73,7 +73,8 @@ async function loadPokemonCard(index) {
     let height = (responseAsJsonCard['height'] / 10).toFixed(1);
     let weight = (responseAsJsonCard['weight'] / 10).toFixed(1);
     let stats = getStats((responseAsJsonCard)['stats']);
-    await loadEvo(getId(responseAsJsonSpecies.evolution_chain.url));
+    await loadEvo(getId(responseAsJsonSpecies.evolution_chain.url, index));
+    //console.log(responseAsJsonSpecies)
 
     let jsonPokeDataCard = {
         'species': species, 'flavortext': flavorText,
@@ -233,15 +234,25 @@ async function loadEvo(index) {
     let response = await fetch(url);
     let responseAsJson = await response.json();
     evoData = [];
+
     pushEvo(responseAsJson.chain.species);
 
     if (responseAsJson.chain.evolves_to.length > 0) {
-        pushEvo(responseAsJson.chain.evolves_to[0].species);
+        for (let i = 0; i < responseAsJson.chain.evolves_to.length; i++) {
+            const element = responseAsJson.chain.evolves_to[i];
+            pushEvo(responseAsJson.chain.evolves_to[i].species);
+        }
+        //pushEvo(responseAsJson.chain.evolves_to[0].species);
 
         if (responseAsJson.chain.evolves_to[0].evolves_to.length > 0) {
-            pushEvo(responseAsJson.chain.evolves_to[0].evolves_to[0].species);
+            for (let i = 0; i < responseAsJson.chain.evolves_to[0].evolves_to.length; i++) {
+                const element = responseAsJson.chain.evolves_to[0].evolves_to[i];
+                pushEvo(responseAsJson.chain.evolves_to[0].evolves_to[0].species);
+
+            }
         }
     }
+    console.log(evoData)
 }
 
 
@@ -249,12 +260,16 @@ async function loadEvo(index) {
  * pushes the evolution data (name, id, sprite) into the evolution json
  * @param {object} data - object to get needed data
  */
-function pushEvo(data) {
+async function pushEvo(data) {
     let name = data.name;
-    let id = getId(data.url)
-    let sprite = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${id}.png`
-    let evoJson = { 'name': name, 'id': id, 'sprite': sprite }
-
+    let id = getId(data.url);
+    let url = `https://pokeapi.co/api/v2/pokemon/${id}`;
+    let response = await fetch(url);
+    let responseAsJson = await response.json();
+    console.log(responseAsJson);
+    let types = getType(responseAsJson['types']);
+    let sprite = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${id}.png`;
+    let evoJson = { 'name': name, 'id': id, 'sprite': sprite , 'type':types };
     evoData.push(evoJson);
 }
 
@@ -292,7 +307,7 @@ function nextPokemon(id) {
     } else if (id == dataOffset) {
         return
     }
-    showCard(id,true);
+    showCard(id, true);
 }
 
 
@@ -305,19 +320,19 @@ function previousPokemon(id) {
     if (id == 1) {
         return
     }
-    showCard(id - 2,true);
+    showCard(id - 2, true);
 }
 
 /**
  * - searches if pokemon is existing in json object.
  * - if pokemon exists it gets displayed as a tile
  */
-function searchPokemon(){
+function searchPokemon() {
     let searchValue = document.getElementById('search').value;
 
     if (searchValue !== '') {
         document.getElementById('load-button').classList.add('d-none');
-    }else{
+    } else {
         document.getElementById('load-button').classList.remove('d-none');
     }
 
@@ -329,5 +344,5 @@ function searchPokemon(){
         }
     }
     renderPokemonSearch(pokemonSearch);
-    pokemonSearch=[];
+    pokemonSearch = [];
 }
