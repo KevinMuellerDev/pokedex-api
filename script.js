@@ -242,7 +242,6 @@ async function loadEvo(index) {
             const element = responseAsJson.chain.evolves_to[i];
             pushEvo(responseAsJson.chain.evolves_to[i].species);
         }
-        //pushEvo(responseAsJson.chain.evolves_to[0].species);
 
         if (responseAsJson.chain.evolves_to[0].evolves_to.length > 0) {
             for (let i = 0; i < responseAsJson.chain.evolves_to[0].evolves_to.length; i++) {
@@ -252,7 +251,6 @@ async function loadEvo(index) {
             }
         }
     }
-    console.log(evoData)
 }
 
 
@@ -266,7 +264,6 @@ async function pushEvo(data) {
     let url = `https://pokeapi.co/api/v2/pokemon/${id}`;
     let response = await fetch(url);
     let responseAsJson = await response.json();
-    console.log(responseAsJson);
     let types = getType(responseAsJson['types']);
     let sprite = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${id}.png`;
     let evoJson = { 'name': name, 'id': id, 'sprite': sprite , 'type':types };

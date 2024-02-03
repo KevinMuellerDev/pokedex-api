@@ -287,6 +287,14 @@ main {
     height: 80%;
 }
 
+.card-flavortext{
+    height: 32%;
+    overflow: scroll;
+    border: 1px solid #4747471f;
+    border-radius: 8px;
+    text-align: center;
+}
+
 td,
 td b {
     color: rgba(0, 0, 0, 0.8);
