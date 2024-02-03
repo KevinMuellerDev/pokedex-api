@@ -344,7 +344,7 @@ table {
     flex-direction: column;
     gap: 32px;
     justify-content: center;
-    height: 75%;
+    height: 70%;
     overflow-y: scroll;
 }
 
