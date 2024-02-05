@@ -23,11 +23,15 @@ async function init() {
  * @param {number} index - index of current Pokemon
  * @param {boolean} card - if true show loading spinner
  */
-async function showCard(index, card) {
+async function showCard(index, card,fromCard) {
     if (!card) { toggleLoadingSpinner(true); }
     currentId = index;
     await loadPokemonCard(index)
-    renderCard(index);
+    if (fromCard) {
+        renderFromCard(index)
+    }else{
+        renderCard(index);
+    }
     if (!card) { toggleLoadingSpinner(false); }
     document.getElementById('card-container').classList.remove('d-none');
 }

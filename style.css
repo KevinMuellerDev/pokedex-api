@@ -362,9 +362,9 @@ table {
     height: 48px;
     display: flex;
     align-items: center;
-    cursor: default;
     margin: 0px 8px 32px;
     transition: transform 125ms ease-in-out;
+    cursor: pointer;
 }
 
 #evocontent div:hover {
